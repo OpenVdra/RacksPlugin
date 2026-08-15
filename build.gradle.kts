@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:26.2.build.112-stable")
 
     // Shaded and relocated — the server needs no connection-pool library of its own.
     shade("com.zaxxer:HikariCP:7.1.0")
@@ -41,7 +41,7 @@ dependencies {
     testImplementation("org.slf4j:slf4j-simple:2.0.18")
     testRuntimeOnly("org.xerial:sqlite-jdbc:3.53.2.1")
     testImplementation("com.zaxxer:HikariCP:7.1.0")
-    testImplementation("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    testImplementation("io.papermc.paper:paper-api:26.2.build.112-stable")
 }
 
 tasks.test {
