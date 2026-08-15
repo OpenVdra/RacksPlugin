@@ -150,8 +150,8 @@ public final class RackService {
         player.getInventory().setItemInMainHand(outgoing);
 
         // Taking sounds like pulling something off a frame; putting or trading sounds like gearing
-        // up. Unlike the data pack the sound plays at the rack rather than at every player online —
-        // its /playsound was given no position, so it reached everybody wherever they stood.
+        // up. Same as the data pack, whose /playsound ran `at` the interaction entity and so was
+        // already positioned on the rack.
         play(world, rack, incoming == null ? Sound.ENTITY_ITEM_FRAME_REMOVE_ITEM : Sound.ITEM_ARMOR_EQUIP_GENERIC);
         return true;
     }

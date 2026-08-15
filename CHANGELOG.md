@@ -20,11 +20,9 @@ First release. A Paper and Folia port of KawaMood's Racks data pack, version 3.2
 
 ### Changed
 
-Behaviour is the data pack's throughout, apart from three points:
+Behaviour is the data pack's throughout, apart from one point:
 
-- Swapping an item and changing a pose now play their sound at the rack. The data pack played them to every player on the server, wherever they were standing.
-- Breaking the barrier under a floor rack in creative mode now breaks the rack. The data pack left its display behind.
-- The wall support setting is saved to `config.yml` and survives a restart. In the data pack it reset.
+- Breaking the barrier under a floor rack in creative mode now breaks the rack. The data pack never watched that block, so the rack's entities and its database row stayed behind and the rack went on working with nothing solid under it.
 
 ### Notes
 

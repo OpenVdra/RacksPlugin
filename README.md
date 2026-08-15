@@ -188,17 +188,13 @@ racks.
 
 ## Deliberate differences from the data pack
 
-Everything else is intentionally identical. These three are not:
+Everything else is intentionally identical. This one is not:
 
-1. **Interaction sounds are played at the rack.** The data pack's `/playsound` for swapping and posing
-   was given no position, so every player on the server heard it wherever they were standing. Here the
-   sound comes from the rack.
-2. **Breaking the barrier breaks the rack.** A floor rack stands on a barrier, which only creative
-   mode can break. The data pack left the rack's entities behind when that happened, stranding a rack
-   that no longer existed as far as anything was concerned. Here that break is treated as breaking
-   the rack.
-3. **The wall support setting persists.** The data pack kept it in a scoreboard value that reset;
-   `/racks setting` writes it to `config.yml`.
+1. **Breaking the barrier breaks the rack.** A floor rack stands on a barrier, which only creative
+   mode can break. Nothing in the data pack watched that block — its only periodic check looks at
+   wall racks' supports — so breaking the barrier left the rack's entities and its database row
+   exactly where they were, and the rack went on working with nothing solid under it. Here that
+   break is treated as breaking the rack, which is what the person swinging meant.
 
 ## Building
 
@@ -223,14 +219,6 @@ npm install
 npm run docs:dev
 ```
 
-The artwork in `docs/public/` is generated from the data pack's icon by
-`docs/scripts/generate-logo.py`, which scales it without blurring and draws the lettering a pixel at
-a time so it matches:
-
-```bash
-python docs/scripts/generate-logo.py
-```
-
 ## Credits
 
 The original **[Racks](https://modrinth.com/datapack/racks)** data pack is by **KawaMood**:
@@ -239,8 +227,9 @@ The original **[Racks](https://modrinth.com/datapack/racks)** data pack is by **
 [Discord](https://discord.com/invite/w8s9XWgN6v) ·
 [kawamood.com](https://www.kawamood.com)
 
-The rack designs, item textures, display transformations, poses and the screenshots on this page are
-KawaMood's work, used under the terms of the original license.
+The rack designs, item textures, display transformations, poses, and the source showcase screenshot
+are KawaMood's work, used under the terms of the original license. Its plaque is relabelled here to
+identify this Paper and Folia plugin.
 
 Plugin port by **Nighter**.
 

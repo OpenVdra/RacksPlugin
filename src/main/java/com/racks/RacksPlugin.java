@@ -194,7 +194,8 @@ public final class RacksPlugin extends JavaPlugin {
     /**
      * Flips the wall-support setting, writes it back to {@code config.yml} and restarts the sweep —
      * the plugin's version of the data pack's {@code settings/ignore_wall_rack_support} functions,
-     * except that this one survives a restart.
+     * which kept the same flag in a scoreboard value. Both survive a restart; a file is simply the
+     * natural place for it here, and it means the setting can be edited without the server running.
      */
     public void setIgnoreWallRackSupport(boolean value) {
         config.setIgnoreWallRackSupport(value);
