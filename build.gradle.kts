@@ -1,7 +1,7 @@
 plugins {
     java
     id("com.gradleup.shadow") version "9.6.1"
-    id("xyz.jpenilla.run-paper") version "3.0.2"
+    id("xyz.jpenilla.run-paper") version "3.1.0"
 }
 
 // Only the libraries listed under `shade` are packed into the final jar (and relocated below).
