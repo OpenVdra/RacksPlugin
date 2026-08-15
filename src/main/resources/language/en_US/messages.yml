@@ -1,0 +1,46 @@
+# Chat messages and item text. {prefix} and {placeholder} tokens are filled in by the plugin.
+# MiniMessage tags (<red>, <#RRGGBB>) or legacy '&' colour codes both work.
+
+prefix: '<#C8A165>Racks <dark_gray>⏩ <reset>'
+
+command:
+  only-player: '{prefix}<red>Only a player can run that.'
+  unknown-variant: '{prefix}<red>Unknown rack variant: {variant}'
+  player-not-found: '{prefix}<red>{player} is not online.'
+  # {count} racks of {variant} handed to yourself.
+  give-self: '{prefix}<gray>Gave yourself {count}× {variant}.'
+  # Sender feedback when giving to somebody else.
+  give-other: '{prefix}<gray>Gave {count}× {variant} to {player}.'
+  # Shown to the receiving player.
+  give-received: '{prefix}<gray>You received {count}× {variant}.'
+  # Inventory was full; {dropped} stacks landed on the floor instead.
+  give-dropped: '{prefix}<gray>Your inventory was full — {dropped} rack(s) dropped at your feet.'
+  reloaded: '{prefix}<gray>Configuration and language files reloaded.'
+
+setting:
+  # {setting} = the human name below, {value} = true/false.
+  get: '<gray>Setting "<yellow>{setting}</yellow>" is currently set to <yellow>{value}</yellow>'
+  set: '<gray>Setting "<yellow>{setting}</yellow>" has been set to <yellow>{value}</yellow>'
+  already: '<red>Setting "<yellow>{setting}</yellow>" is already set to <yellow>{value}</yellow>'
+  name:
+    ignore-wall-rack-support: 'Ignore Wall Rack Support'
+    lootable-delay: 'Lootable Delay'
+
+# Item name and lore of the rack item itself. The data pack showed a yellow name with a matching
+# dark grey lore line; keep {variant} where the wood name belongs.
+item:
+  name: '<yellow>{variant} Rack'
+  lore: '<dark_gray>{variant} Rack'
+  variant:
+    acacia: 'Acacia'
+    bamboo: 'Bamboo'
+    birch: 'Birch'
+    cherry: 'Cherry'
+    crimson: 'Crimson'
+    dark_oak: 'Dark Oak'
+    jungle: 'Jungle'
+    mangrove: 'Mangrove'
+    oak: 'Oak'
+    pale_oak: 'Pale Oak'
+    spruce: 'Spruce'
+    warped: 'Warped'

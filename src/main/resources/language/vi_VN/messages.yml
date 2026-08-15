@@ -1,0 +1,41 @@
+# Tin nhắn trong chat và chữ trên vật phẩm. {prefix} và các {placeholder} do plugin điền vào.
+# Có thể dùng thẻ MiniMessage (<red>, <#RRGGBB>) hoặc mã màu '&' kiểu cũ.
+
+prefix: '<#C8A165>Racks <dark_gray>⏩ <reset>'
+
+command:
+  only-player: '{prefix}<red>Chỉ người chơi mới dùng được lệnh này.'
+  unknown-variant: '{prefix}<red>Không có loại giá treo: {variant}'
+  player-not-found: '{prefix}<red>{player} hiện không trực tuyến.'
+  give-self: '{prefix}<gray>Đã nhận {count}× {variant}.'
+  give-other: '{prefix}<gray>Đã đưa {count}× {variant} cho {player}.'
+  give-received: '{prefix}<gray>Bạn vừa nhận được {count}× {variant}.'
+  give-dropped: '{prefix}<gray>Túi đồ của bạn đã đầy — {dropped} giá treo đã rơi xuống đất.'
+  reloaded: '{prefix}<gray>Đã tải lại cấu hình và các tệp ngôn ngữ.'
+
+setting:
+  get: '<gray>Tùy chọn "<yellow>{setting}</yellow>" đang được đặt là <yellow>{value}</yellow>'
+  set: '<gray>Tùy chọn "<yellow>{setting}</yellow>" đã được đặt thành <yellow>{value}</yellow>'
+  already: '<red>Tùy chọn "<yellow>{setting}</yellow>" vốn đã là <yellow>{value}</yellow>'
+  name:
+    ignore-wall-rack-support: 'Bỏ qua điểm tựa của giá treo tường'
+    lootable-delay: 'Độ trễ trước khi rơi vật phẩm'
+
+# Tên và mô tả của vật phẩm giá treo. Bản data pack gốc dùng tên màu vàng kèm một dòng mô tả xám
+# đậm giống hệt; hãy giữ {variant} ở vị trí tên loại gỗ.
+item:
+  name: '<yellow>Giá Treo {variant}'
+  lore: '<dark_gray>Giá Treo {variant}'
+  variant:
+    acacia: 'Gỗ Keo'
+    bamboo: 'Tre'
+    birch: 'Gỗ Bạch Dương'
+    cherry: 'Gỗ Anh Đào'
+    crimson: 'Gỗ Đỏ Thẫm'
+    dark_oak: 'Gỗ Sồi Sẫm'
+    jungle: 'Gỗ Nhiệt Đới'
+    mangrove: 'Gỗ Đước'
+    oak: 'Gỗ Sồi'
+    pale_oak: 'Gỗ Sồi Nhạt'
+    spruce: 'Gỗ Vân Sam'
+    warped: 'Gỗ Cong Vênh'

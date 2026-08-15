@@ -1,0 +1,23 @@
+name: Racks
+version: '${version}'
+main: com.racks.RacksPlugin
+api-version: '1.21'
+folia-supported: true
+author: Nighter
+description: Wall and ground weapon/tool racks, a plugin port of KawaMood's Racks data pack
+
+permissions:
+  # Default true: the original data pack gates nothing, so out of the box the plugin behaves
+  # identically. Set it to false (or negate it per-group) to restrict rack usage.
+  racks.use:
+    description: Place racks, swap items on them, change their pose and break them
+    default: true
+  racks.command.give:
+    description: Use /racks give
+    default: op
+  racks.command.reload:
+    description: Use /racks reload
+    default: op
+  racks.command.setting:
+    description: Use /racks setting
+    default: op

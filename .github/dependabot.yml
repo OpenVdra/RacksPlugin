@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: npm
+    directory: /docs
+    schedule:
+      interval: daily
+    commit-message:
+      prefix: chore

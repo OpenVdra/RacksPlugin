@@ -1,0 +1,37 @@
+# Everything here applies on /racks reload unless marked NEED RESTART.
+# Player messages live in language/<locale>/messages.yml, not in this file.
+
+# Language used for players whose own language has no file, and for text with no single reader,
+# such as a rack lying on the ground. Must match a folder name under language/.
+language: en_US
+
+# Show each player messages in their own game language, when a folder for it exists under
+# language/. Off puts everyone on the language above.
+language-auto-detect: true
+
+database:
+  # NEED RESTART:
+  # SQLite file inside plugins/Racks/. Holds every placed rack and what is on it.
+  file: racks.db
+
+settings:
+  # true: wall racks stay up even after the block they hang on is gone.
+  # false: they drop themselves, the way a painting does.
+  ignore-wall-rack-support: false
+
+  # How often wall racks check the block behind them, in ticks. 20 ticks is one second.
+  # Higher means less work for the server and a longer wait before a rack falls.
+  wall-support-check-interval: 10
+
+  # How long a rack must stand, in ticks, before breaking it drops the rack itself. 0 always drops.
+  # Raise it if a land protection plugin cancels placements a moment late, which otherwise lets a
+  # player place and break a rack for a free copy. Items on the rack always drop, at any value.
+  lootable-delay: 0
+
+# Import racks left standing by the Racks data pack, as their chunks load.
+# Remove the data pack first, or the two fight over the same racks.
+adopt-datapack-racks: true
+
+# Register the twelve crafting recipes. Off means racks come only from /racks give or your own
+# loot tables.
+recipes-enabled: true
