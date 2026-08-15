@@ -100,5 +100,8 @@ tasks.processResources {
 }
 
 tasks.runServer {
+    downloadPlugins {
+        modrinth("viaversion", "5.10.0")
+    }
     minecraftVersion("1.21.11")
 }
