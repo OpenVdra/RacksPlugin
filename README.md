@@ -9,7 +9,7 @@ Give them a display of their own, on the floor or on the wall.
 A Paper and Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)**, the Minecraft data
 pack by **KawaMood**.
 
-[Documentation](https://nighter.github.io/Racks/) ·
+[Documentation](https://openvdra.github.io/RacksPlugin/) ·
 [Original data pack](https://modrinth.com/datapack/racks) ·
 [Changelog](CHANGELOG.md)
 

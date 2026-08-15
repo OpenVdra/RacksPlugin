@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
-const REPO = 'https://github.com/Nighter/Racks'
+const REPO = 'https://github.com/OpenVdra/RacksPlugin'
 const MODRINTH = 'https://modrinth.com/datapack/racks'
-const SITE = 'https://nighter.github.io/Racks'
+const SITE = 'https://openvdra.github.io/RacksPlugin'
 
 // Pages relative to /docs/ or /vi/docs/, matching the on-disk layout. Both locales
 // share this list; only the sidebar labels differ.
@@ -69,16 +69,16 @@ const viSidebarMap = {
 export default defineConfig({
   title: 'Racks',
   description: 'Show off your tools and weapons on wall and ground racks. A Paper and Folia port of KawaMood\'s Racks data pack.',
-  // GitHub project pages are served from /Racks/. Point a custom domain at the site
+  // GitHub project pages are served from /RacksPlugin/. Point a custom domain at the site
   // (add public/CNAME) and change this back to '/'.
-  base: '/Racks/',
+  base: '/RacksPlugin/',
   cleanUrls: true,
   head: [
     // `head` entries are emitted verbatim, so `base` is NOT prepended the way it is for
     // themeConfig.logo and markdown links. The href has to carry the base itself or the
     // favicon resolves to the domain root on a project site and 404s.
-    ['link', { rel: 'icon', type: 'image/png', href: '/Racks/favicon.png' }],
-    ['link', { rel: 'apple-touch-icon', href: '/Racks/logo.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/RacksPlugin/favicon.png' }],
+    ['link', { rel: 'apple-touch-icon', href: '/RacksPlugin/logo.png' }],
     // Social share preview when a docs link is pasted into Discord, Twitter and friends.
     ['meta', { property: 'og:image', content: `${SITE}/banner.png` }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
