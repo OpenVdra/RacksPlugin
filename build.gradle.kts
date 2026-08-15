@@ -36,7 +36,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.46")
 
     // Test-only: JUnit 5 + a real sqlite driver + an slf4j binding for the storage logger.
-    testImplementation("org.junit.jupiter:junit-jupiter:6.1.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.slf4j:slf4j-simple:2.0.18")
     testRuntimeOnly("org.xerial:sqlite-jdbc:3.53.2.1")
