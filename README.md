@@ -2,7 +2,7 @@
 
 ![Racks in every wood](docs/public/media/showcase.jpeg)
 
-A Paper/Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)** that adds wooden display racks for tools and weapons. No resource pack required.
+A Paper/Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)** that adds wooden display racks for tools and weapons. Rewritten with SQLite storage, native ItemStack serialization, permissions, and added features like WorldGuard/GriefPrevention integration and multi-language support.
 
 [![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/plugin/racks)
 [![Documentation](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/documentation/ghpages_vector.svg)](https://openvdra.github.io/RacksPlugin/)
@@ -10,11 +10,7 @@ A Paper/Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)** th
 
 </div>
 
----
-
-Craft a wooden rack, put it on the floor or hang it on a wall, and display your gear on it.
-Right-click to swap an item in or out, sneak and right-click to change how the items are angled,
-left-click to take the rack back down.
+## Requriements
 
 - **Minecraft:** 1.21.11+
 - **Server:** Paper/Folia or compatible fork
@@ -44,9 +40,11 @@ left-click to take the rack back down.
 
 ## Crafting
 
-Three planks in a row, two sticks below the ends. Any of the twelve woods works.
+Three planks in a row, two sticks below the ends. Any of the twelve woods works. Put it on the floor or hang it on a wall, and display your gear on it.
+Right-click to swap an item in or out, sneak and right-click to change how the items are angled,
+left-click to take the rack back down.
 
-<img src="docs/public/media/recipe.gif" alt="Rack crafting recipe" width="420">
+<img src="https://raw.githubusercontent.com/OpenVdra/RacksPlugin/main/docs/public/media/recipe.gif" alt="Rack crafting recipe" width="420">
 
 ### What a rack will hold
 
@@ -156,17 +154,11 @@ npm run docs:dev
 
 ## Credits
 
-The original **[Racks](https://modrinth.com/datapack/racks)** data pack is by **KawaMood**:
-[Modrinth](https://modrinth.com/user/KawaMood) ·
-[YouTube](https://www.youtube.com/@KawaMood) ·
-[Discord](https://discord.com/invite/w8s9XWgN6v) ·
-[kawamood.com](https://www.kawamood.com)
+The original **[Racks](https://modrinth.com/datapack/racks)** data pack is by [**KawaMood**](https://www.kawamood.com)
 
-The rack designs, item textures, display transformations, poses, and the source showcase screenshot
-are KawaMood's work, used under the terms of the original license. Its plaque is relabelled here to
-identify this Paper and Folia plugin.
-
-Plugin port by **Nighter**.
+The rack designs, item textures, display transformations, poses, and every screenshot and recipe
+image on this page are KawaMood's work, used under the terms of the original license. Its plaque is
+relabelled here to identify this Paper and Folia plugin.
 
 ## License
 
