@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 const REPO = 'https://github.com/OpenVdra/RacksPlugin'
-const MODRINTH = 'https://modrinth.com/datapack/racks'
+const MODRINTH = 'https://modrinth.com/plugin/racksplugin'
 const SITE = 'https://openvdra.github.io/RacksPlugin'
 
 // Pages relative to /docs/ or /vi/docs/, matching the on-disk layout. Both locales

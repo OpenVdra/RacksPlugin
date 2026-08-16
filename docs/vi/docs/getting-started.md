@@ -14,8 +14,8 @@ nâng cấp thế giới.
 
 ## Yêu cầu
 
-- Minecraft 1.21.11
-- Paper, một bản fork của Paper, hoặc Folia
+- Minecraft 1.21.11+
+- Paper, Folia, hoặc bản fork tương thích
 - Java 21
 
 Không cần resource pack. Vật phẩm giá treo là đầu người chơi với skin riêng, còn bản thân giá treo
@@ -23,7 +23,8 @@ Không cần resource pack. Vật phẩm giá treo là đầu người chơi v�
 
 ## Tải về
 
-Lấy bản `Racks-<phiên bản>.jar` mới nhất từ kênh phân phối chính thức của dự án.
+Lấy bản `Racks-<phiên bản>.jar` mới nhất từ [Modrinth](https://modrinth.com/plugin/racksplugin) hoặc
+[GitHub Releases](https://github.com/OpenVdra/RacksPlugin/releases) của dự án.
 
 ## Cách cài
 

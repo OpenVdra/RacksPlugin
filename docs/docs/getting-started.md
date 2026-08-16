@@ -13,8 +13,8 @@ world upgrade and never depend on command storage.
 
 ## Requirements
 
-- Minecraft 1.21.11
-- Paper, a Paper fork, or Folia
+- Minecraft 1.21.11+
+- Paper, Folia, or a compatible fork
 - Java 21
 
 No resource pack is needed. The rack item is a player head with a custom skin, and the rack itself is
@@ -22,7 +22,8 @@ built from ordinary fences and buttons, so it looks right on a plain client.
 
 ## Download
 
-Obtain the latest `Racks-<version>.jar` from the project's published downloads.
+Get the latest `Racks-<version>.jar` from [Modrinth](https://modrinth.com/plugin/racksplugin) or
+[GitHub Releases](https://github.com/OpenVdra/RacksPlugin/releases).
 
 ## Install
 

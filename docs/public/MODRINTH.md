@@ -2,9 +2,9 @@
 
 ![Racks in every wood](https://raw.githubusercontent.com/OpenVdra/RacksPlugin/main/docs/public/media/showcase.jpeg)
 
-A Paper/Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)** that adds wooden display racks for tools and weapons. Rewritten with SQLite storage, native ItemStack serialization, permissions, and added features like WorldGuard/GriefPrevention integration and multi-language support.
+A Paper/Folia plugin port of **[Racks](https://modrinth.com/plugin/racksplugin)** that adds wooden display racks for tools and weapons. Rewritten with SQLite storage, native ItemStack serialization, permissions, and added features like WorldGuard/GriefPrevention integration and multi-language support.
 
-[![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/plugin/racks)
+[![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/plugin/racksplugin)
 [![Documentation](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/documentation/ghpages_vector.svg)](https://openvdra.github.io/RacksPlugin/)
 [![GitHub](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/github_vector.svg)](https://github.com/OpenVdra/RacksPlugin)
 
