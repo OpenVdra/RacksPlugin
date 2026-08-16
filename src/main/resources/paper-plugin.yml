@@ -5,7 +5,20 @@ api-version: '1.21'
 folia-supported: true
 author: Nighter
 description: Wall and ground weapon/tool racks, a plugin port of KawaMood's Racks data pack
-softdepend: [WorldGuard, GriefPrevention]
+# Plain `softdepend` only orders legacy plugin.yml plugins against each other — it does not order a
+# Paper plugin (this one) against them, and even with correct order, a Paper plugin's classloader does
+# not resolve a legacy plugin's classes unless join-classpath is set. Without both, WorldGuardHook and
+# GriefPreventionHook fail with NoClassDefFoundError the first time they touch the other plugin's API.
+dependencies:
+  server:
+    WorldGuard:
+      load: BEFORE
+      required: false
+      join-classpath: true
+    GriefPrevention:
+      load: BEFORE
+      required: false
+      join-classpath: true
 
 permissions:
   # Default true: the original data pack gates nothing, so out of the box the plugin behaves

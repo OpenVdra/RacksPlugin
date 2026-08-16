@@ -41,10 +41,10 @@ public final class RackInteractListener implements Listener {
     private final RackRepository repository;
     private final RackEntityKeys keys;
     private final Supplier<PluginConfig> config;
-    private final ProtectionHooks protection;
+    private final Supplier<ProtectionHooks> protection;
 
     public RackInteractListener(RackService service, RackRepository repository, RackEntityKeys keys,
-                                Supplier<PluginConfig> config, ProtectionHooks protection) {
+                                Supplier<PluginConfig> config, Supplier<ProtectionHooks> protection) {
         this.service = service;
         this.repository = repository;
         this.keys = keys;
@@ -130,12 +130,12 @@ public final class RackInteractListener implements Listener {
     // ------------------------------------------------------------------------------------------------
 
     private boolean canBreak(Player player, Rack rack) {
-        return protection.canBreak(player, rack.key().toLocation(player.getWorld()), this::isHookEnabled);
+        return protection.get().canBreak(player, rack.key().toLocation(player.getWorld()), this::isHookEnabled);
     }
 
     /** @see #canBreak */
     private boolean canInteract(Player player, Rack rack) {
-        return protection.canInteract(player, rack.key().toLocation(player.getWorld()), this::isHookEnabled);
+        return protection.get().canInteract(player, rack.key().toLocation(player.getWorld()), this::isHookEnabled);
     }
 
     /**

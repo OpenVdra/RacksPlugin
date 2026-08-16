@@ -61,6 +61,7 @@ public final class RacksPlugin extends JavaPlugin {
     private RackRecipes recipes;
     private RackService service;
     private WallSupportService wallSupport;
+    private volatile ProtectionHooks protection;
 
     @Override
     public void onEnable() {
@@ -90,9 +91,16 @@ public final class RacksPlugin extends JavaPlugin {
         wallSupport.start();
 
         DatapackAdopter adopter = new DatapackAdopter(repository, renderer, keys, placeable, getSLF4JLogger());
-        ProtectionHooks protection = ProtectionHooks.detect(getServer().getPluginManager(), getSLF4JLogger());
+        protection = ProtectionHooks.detect(getServer().getPluginManager(), getSLF4JLogger());
+        // Paper plugins (this one included) enable before legacy plugin.yml plugins such as
+        // WorldGuard/GriefPrevention, through an entirely separate loading pipeline that ignores
+        // softdepend ordering between the two formats — see paper-plugin.yml's softdepend comment.
+        // Detecting again next tick, once CraftServer.loadPlugins() has finished enabling every
+        // legacy plugin too, is what actually catches them.
+        scheduler.runNextTick(() ->
+                protection = ProtectionHooks.detect(getServer().getPluginManager(), getSLF4JLogger()));
 
-        registerListeners(keys, renderer, adopter, protection);
+        registerListeners(keys, renderer, adopter);
         registerCommands();
 
         recipes = new RackRecipes(this, rackItems, lang);
@@ -155,11 +163,10 @@ public final class RacksPlugin extends JavaPlugin {
         }
     }
 
-    private void registerListeners(RackEntityKeys keys, RackRenderer renderer, DatapackAdopter adopter,
-                                   ProtectionHooks protection) {
+    private void registerListeners(RackEntityKeys keys, RackRenderer renderer, DatapackAdopter adopter) {
         var manager = getServer().getPluginManager();
         manager.registerEvents(new RackPlaceListener(service, rackItems, repository, scheduler), this);
-        manager.registerEvents(new RackInteractListener(service, repository, keys, this::pluginConfig, protection), this);
+        manager.registerEvents(new RackInteractListener(service, repository, keys, this::pluginConfig, this::protection), this);
         manager.registerEvents(new RackBlockListener(service), this);
         manager.registerEvents(new RackItemUpgradeListener(rackItems), this);
         manager.registerEvents(new RackChunkListener(this::pluginConfig, repository, renderer, keys,
@@ -239,5 +246,9 @@ public final class RacksPlugin extends JavaPlugin {
 
     public Scheduler scheduler() {
         return scheduler;
+    }
+
+    public ProtectionHooks protection() {
+        return protection;
     }
 }

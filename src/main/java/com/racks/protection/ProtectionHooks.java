@@ -13,11 +13,14 @@ import java.util.function.Predicate;
  * Every {@link ProtectionHook} whose plugin is installed, combined: a player needs every
  * <b>enabled</b> hook's approval, so one denying region or claim is enough to deny the action.
  *
- * <p>Built once, in {@link #detect}, at plugin enable — which protection plugins are on the server
- * cannot change without a restart, so there is nothing to re-detect on {@code /racks reload}. Whether
- * an installed hook actually runs is a live, per-plugin setting instead ({@code protection.worldguard}
- * / {@code protection.griefprevention} in {@code PluginConfig}), so {@code enabled} is passed fresh on
- * every call rather than baked in here.
+ * <p>Built in {@link #detect}, called once during {@code onEnable} and again on the next tick (see
+ * {@code RacksPlugin.onEnable}) — Paper plugins enable before legacy {@code plugin.yml} plugins such
+ * as WorldGuard/GriefPrevention through an entirely separate loading pipeline that ignores declared
+ * {@code softdepend} between the two formats, so the first call alone would miss them. Which protection
+ * plugins are on the server cannot change after that without a restart, so there is nothing further to
+ * re-detect on {@code /racks reload}. Whether an installed hook actually runs is a live, per-plugin
+ * setting instead ({@code protection.worldguard} / {@code protection.griefprevention} in
+ * {@code PluginConfig}), so {@code enabled} is passed fresh on every call rather than baked in here.
  */
 public final class ProtectionHooks {
 
