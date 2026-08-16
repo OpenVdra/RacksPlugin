@@ -102,9 +102,8 @@ extra permission to grant. See
 
 ## Migrating from the data pack
 
-> [!WARNING]
-> **Remove the data pack before starting the server with this plugin.** If both are installed they
-> will fight over the same entities.
+**Remove the data pack before starting the server with this plugin.** If both are installed they
+will fight over the same entities.
 
 Set `adopt-datapack-racks: true` in `config.yml` (it is `false` by default) and the plugin imports
 racks the data pack left standing. It reads each one off the entities that make it up: the wood from
@@ -139,8 +138,8 @@ The original **[Racks](https://modrinth.com/datapack/racks)** data pack is by **
 [Discord](https://discord.com/invite/w8s9XWgN6v) ·
 [kawamood.com](https://www.kawamood.com)
 
-The rack designs, item textures, display transformations, poses, and the source showcase screenshot
-are KawaMood's work, used under the terms of the original license. Its plaque is relabelled here to
-identify this Paper and Folia plugin.
+The rack designs, item textures, display transformations, poses, and every screenshot and recipe
+image on this page are KawaMood's work, used under the terms of the original license. Its plaque is
+relabelled here to identify this Paper and Folia plugin.
 
 Plugin port by **Nighter**.
