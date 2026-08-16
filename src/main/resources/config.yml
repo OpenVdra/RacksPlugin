@@ -28,9 +28,18 @@ settings:
   # player place and break a rack for a free copy. Items on the rack always drop, at any value.
   lootable-delay: 0
 
+# Ask the matching plugin's regions/claims before letting a player break a rack or swap its item, if
+# that plugin is installed. Each is independent: turn either off without touching the other, or leave
+# both on (the default) and let Racks use whichever is actually present. Placing a rack is unaffected
+# either way — it is a normal block placement, already covered by whatever these plugins already do
+# for one.
+protection:
+  worldguard: true
+  griefprevention: true
+
 # Import racks left standing by the Racks data pack, as their chunks load.
 # Remove the data pack first, or the two fight over the same racks.
-adopt-datapack-racks: true
+adopt-datapack-racks: false
 
 # Register the twelve crafting recipes. Off means racks come only from /racks give or your own
 # loot tables.

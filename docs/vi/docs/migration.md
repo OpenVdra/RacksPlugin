@@ -4,7 +4,8 @@ title: Chuyển từ data pack
 
 # Chuyển từ data pack
 
-Những giá treo đã có sẵn trong thế giới được nhập tự động, kèm theo vật phẩm đang nằm trên chúng.
+Những giá treo đã có sẵn trong thế giới có thể được nhập tự động, kèm theo vật phẩm đang nằm trên
+chúng — bật `adopt-datapack-racks` trong `config.yml` (mặc định tắt).
 
 ::: warning Gỡ data pack trước
 Đừng chạy data pack và plugin cùng lúc. Cả hai sẽ tranh nhau điều khiển cùng những giá treo đó.
@@ -17,12 +18,14 @@ Những giá treo đã có sẵn trong thế giới được nhập tự động
 3. Xóa data pack Racks khỏi thư mục `datapacks` của mọi thế giới. **Đừng** chạy hàm gỡ cài đặt của
    data pack, vì hàm đó xóa luôn các giá treo.
 4. Bỏ file jar của plugin vào `plugins`.
-5. Bật máy chủ.
+5. Trong `plugins/Racks/config.yml`, đặt `adopt-datapack-racks: true`.
+6. Bật máy chủ.
 
 Vậy là xong. Giá treo được nhập theo từng chunk khi chunk được tải, nên một thế giới lớn sẽ chuyển
 dần theo bước chân người chơi chứ không dồn hết vào lúc khởi động.
 
-Tắt `adopt-datapack-racks` trong `config.yml` nếu bạn muốn để nguyên các giá treo cũ.
+Để nguyên `adopt-datapack-racks: false` (mặc định) nếu bạn muốn giữ nguyên các giá treo cũ của data
+pack, không đưa chúng vào plugin.
 
 ## Những gì được giữ lại
 

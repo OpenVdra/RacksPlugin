@@ -43,7 +43,8 @@ Minecraft version upgrade.
 | **SQLite storage** | Placed racks and their contents live in `plugins/Racks/racks.db` |
 | **Per-player language** | English and Vietnamese included; each player reads their own client language |
 | **Folia support** | A rack is only ever touched from the thread that owns its block |
-| **Data pack migration** | Racks left standing by the original data pack are imported automatically |
+| **Data pack migration** | Racks left standing by the original data pack can be imported on request |
+| **WorldGuard / GriefPrevention** | Breaking a rack or swapping its item is checked against regions and claims, if either plugin is installed |
 
 <table>
 <tr>
@@ -118,7 +119,11 @@ settings:
   wall-support-check-interval: 10
   lootable-delay: 0
 
-adopt-datapack-racks: true
+protection:
+  worldguard: true
+  griefprevention: true
+
+adopt-datapack-racks: false
 recipes-enabled: true
 ```
 
@@ -139,6 +144,12 @@ Items already on a rack always drop, whatever this is set to.
 **`recipes-enabled`** turns the twelve crafting recipes off, leaving `/racks give` and your own loot
 tables.
 
+**`protection.worldguard`** and **`protection.griefprevention`** each ask their matching plugin's
+regions/claims before letting a player break a rack or swap its item, when that plugin is installed —
+see [Protection plugins](#protection-plugins) below. Turn either off without touching the other.
+Placing a rack needs no integration; it is a normal block placement, already covered by whatever
+these plugins already do for one.
+
 ### Languages
 
 `plugins/Racks/language/en_US/messages.yml` and `vi_VN/messages.yml` ship with the plugin. Add your
@@ -155,18 +166,36 @@ how the data pack behaved.
 > languages will not stack with each other. Set `language-auto-detect: false` if you would rather they
 > always did.
 
+## Protection plugins
+
+Breaking a rack, swapping its item or turning it is checked against **WorldGuard** regions and
+**GriefPrevention** claims, whichever of the two (or both) is installed — nothing to configure beyond
+having the plugin itself running. **Placing** a rack needs no integration: it is a normal
+`BlockPlaceEvent`, so both plugins already protect it on their own.
+
+| Rack action | WorldGuard flag | GriefPrevention trust |
+|---|---|---|
+| Break | `block-break` | Build |
+| Swap an item, or turn the rack | `interact` | Inventory (`/containertrust`) |
+
+Operators and `worldguard.region.bypass` skip WorldGuard's checks. GriefPrevention's own claim owner,
+trusted players, admin claims and a player's `/ignoreclaims` toggle are honoured automatically, with
+no separate permission to grant. `protection.worldguard: false` and `protection.griefprevention:
+false` in `config.yml` turn each off independently. See
+[Protection Plugins](https://openvdra.github.io/RacksPlugin/docs/protections) for the full breakdown.
+
 ## Migrating from the data pack
 
 > [!WARNING]
 > **Remove the data pack before starting the server with this plugin.** If both are installed they
 > will fight over the same entities.
 
-With `adopt-datapack-racks: true` (the default) the plugin imports racks the data pack left standing.
-It reads each one off the entities that make it up: the wood from the block its frame displays, the
-direction from the yaw those displays were turned to, the contents from what the item displays are
-holding, and even the pose, by matching the display's transform against the same tables the data pack
-applied. The old entities are then removed and a plugin-owned rack is built in their place, holding
-the same items in the same pose.
+Set `adopt-datapack-racks: true` in `config.yml` (it is `false` by default) and the plugin imports
+racks the data pack left standing. It reads each one off the entities that make it up: the wood from
+the block its frame displays, the direction from the yaw those displays were turned to, the contents
+from what the item displays are holding, and even the pose, by matching the display's transform
+against the same tables the data pack applied. The old entities are then removed and a plugin-owned
+rack is built in their place, holding the same items in the same pose.
 
 This happens per chunk, as chunks load, so a large world migrates gradually rather than all at once.
 

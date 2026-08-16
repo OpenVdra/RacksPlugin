@@ -71,7 +71,31 @@ Items sitting on the rack always drop, whatever this is set to.
 </ConfigProperty>
 </ConfigGroup>
 
-<ConfigProperty name="adopt-datapack-racks" value="true" type="boolean">
+<ConfigGroup name="protection">
+<ConfigProperty name="worldguard" value="true" type="boolean">
+
+Ask WorldGuard regions before letting a player break a rack or swap its item, when WorldGuard is
+installed. Has no effect if it is not. See [Protection Plugins](/docs/protections) for which flag
+each action checks.
+
+Off skips WorldGuard's checks specifically, independently of `griefprevention` below. Placing a rack
+is unaffected either way — it is a normal block placement, already covered by WorldGuard on its own.
+
+</ConfigProperty>
+<ConfigProperty name="griefprevention" value="true" type="boolean">
+
+Ask GriefPrevention claims before letting a player break a rack or swap its item, when
+GriefPrevention is installed. Has no effect if it is not. See
+[Protection Plugins](/docs/protections) for which trust level each action checks.
+
+Off skips GriefPrevention's checks specifically, independently of `worldguard` above. Placing a rack
+is unaffected either way — it is a normal block placement, already covered by GriefPrevention on its
+own.
+
+</ConfigProperty>
+</ConfigGroup>
+
+<ConfigProperty name="adopt-datapack-racks" value="false" type="boolean">
 
 Import racks left standing in the world by the Racks data pack, as their chunks load.
 
@@ -102,6 +126,10 @@ settings:
   wall-support-check-interval: 10
   lootable-delay: 0
 
-adopt-datapack-racks: true
+protection:
+  worldguard: true
+  griefprevention: true
+
+adopt-datapack-racks: false
 recipes-enabled: true
 ```

@@ -4,7 +4,8 @@ title: Coming from the Data Pack
 
 # Coming from the Data Pack
 
-Racks already standing in your world are imported automatically, with the items still on them.
+Racks already standing in your world can be imported automatically, with the items still on them —
+turn on `adopt-datapack-racks` in `config.yml` (off by default).
 
 ::: warning Remove the data pack first
 Do not run the data pack and the plugin at the same time. Both will try to control the same racks.
@@ -17,12 +18,14 @@ Do not run the data pack and the plugin at the same time. Both will try to contr
 3. Delete the Racks data pack from every world's `datapacks` folder. Do **not** run the data pack's
    uninstall function, that removes the racks themselves.
 4. Put the plugin jar in `plugins`.
-5. Start the server.
+5. In `plugins/Racks/config.yml`, set `adopt-datapack-racks: true`.
+6. Start the server.
 
 That is all. Racks are imported as their chunks load, so a large world moves over gradually as
 players travel rather than all at once on startup.
 
-Turn `adopt-datapack-racks` off in `config.yml` if you would rather leave old racks alone.
+Leave `adopt-datapack-racks: false` (the default) if you would rather leave old racks alone and not
+bring them into the plugin.
 
 ## What carries over
 

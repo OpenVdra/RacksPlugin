@@ -21,6 +21,8 @@ java {
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://maven.enginehub.org/repo/") // WorldGuard (also carries WorldEdit, transitively)
+    maven("https://jitpack.io") // GriefPrevention
 }
 
 dependencies {
@@ -31,6 +33,8 @@ dependencies {
 
     // Paper bundles sqlite-jdbc on the server classpath; compileOnly is sufficient.
     compileOnly("org.xerial:sqlite-jdbc:3.53.2.1")
+    compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.15") // pulls worldedit-bukkit transitively
+    compileOnly("com.github.GriefPrevention:GriefPrevention:18.0.0")
 
     compileOnly("org.projectlombok:lombok:1.18.46")
     annotationProcessor("org.projectlombok:lombok:1.18.46")

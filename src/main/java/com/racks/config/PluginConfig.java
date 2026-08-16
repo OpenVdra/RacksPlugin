@@ -18,6 +18,8 @@ public final class PluginConfig {
     private final String tablePrefix;
     private final int wallSupportCheckInterval;
     private final long lootableDelay;
+    private final boolean worldGuardIntegration;
+    private final boolean griefPreventionIntegration;
     private final boolean adoptDatapackRacks;
     private final boolean recipesEnabled;
 
@@ -31,7 +33,9 @@ public final class PluginConfig {
         this.ignoreWallRackSupport = config.getBoolean("settings.ignore-wall-rack-support", false);
         this.wallSupportCheckInterval = Math.max(1, config.getInt("settings.wall-support-check-interval", 10));
         this.lootableDelay = Math.max(0, config.getLong("settings.lootable-delay", 0));
-        this.adoptDatapackRacks = config.getBoolean("adopt-datapack-racks", true);
+        this.worldGuardIntegration = config.getBoolean("protection.worldguard", true);
+        this.griefPreventionIntegration = config.getBoolean("protection.griefprevention", true);
+        this.adoptDatapackRacks = config.getBoolean("adopt-datapack-racks", false);
         this.recipesEnabled = config.getBoolean("recipes-enabled", true);
     }
 
@@ -74,6 +78,14 @@ public final class PluginConfig {
 
     public long getLootableDelay() {
         return lootableDelay;
+    }
+
+    public boolean isWorldGuardIntegrationEnabled() {
+        return worldGuardIntegration;
+    }
+
+    public boolean isGriefPreventionIntegrationEnabled() {
+        return griefPreventionIntegration;
     }
 
     public boolean isAdoptDatapackRacks() {

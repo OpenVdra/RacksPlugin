@@ -9,7 +9,7 @@ const SITE = 'https://openvdra.github.io/RacksPlugin'
 const pages = [
   'getting-started', 'using-racks', 'wood-variants',
   'commands', 'permissions',
-  'configuration', 'language', 'migration'
+  'configuration', 'language', 'migration', 'protections'
 ]
 
 const enSidebar = [
@@ -28,6 +28,7 @@ const enSidebar = [
       { text: 'Permissions', link: '/docs/permissions' },
       { text: 'Configuration', link: '/docs/configuration' },
       { text: 'Language', link: '/docs/language' },
+      { text: 'Protection Plugins', link: '/docs/protections' },
       { text: 'Coming from the Data Pack', link: '/docs/migration' }
     ]
   }
@@ -49,6 +50,7 @@ const viSidebar = [
       { text: 'Quyền', link: '/vi/docs/permissions' },
       { text: 'Cấu hình', link: '/vi/docs/configuration' },
       { text: 'Ngôn ngữ', link: '/vi/docs/language' },
+      { text: 'Plugin bảo vệ đất', link: '/vi/docs/protections' },
       { text: 'Chuyển từ data pack', link: '/vi/docs/migration' }
     ]
   }

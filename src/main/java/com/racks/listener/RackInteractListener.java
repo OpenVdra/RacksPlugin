@@ -1,7 +1,9 @@
 package com.racks.listener;
 
+import com.racks.config.PluginConfig;
 import com.racks.model.Rack;
 import com.racks.model.RackPart;
+import com.racks.protection.ProtectionHooks;
 import com.racks.render.RackEntityKeys;
 import com.racks.service.RackService;
 import com.racks.storage.RackRepository;
@@ -18,6 +20,8 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Supplier;
+
 /**
  * The three things a player can do to a rack, from the two events that reach its hitboxes.
  *
@@ -25,17 +29,27 @@ import org.jetbrains.annotations.Nullable;
  * data pack's {@code player_interacted_with_entity} and {@code player_hurt_entity} advancement pair,
  * mapped onto the events Bukkit already delivers — on the thread that owns the rack, which is what
  * lets {@link RackService} work without locks.
+ *
+ * <p>Placing a rack is a real {@code BlockPlaceEvent}, so WorldGuard/GriefPrevention already protect
+ * it on their own. None of the three actions here are — a rack's hitboxes are {@link Interaction}
+ * entities, invisible to a protection plugin's ordinary block flags — so {@link ProtectionHooks} is
+ * asked explicitly, right after the {@code racks.use} check and before either service call.
  */
 public final class RackInteractListener implements Listener {
 
     private final RackService service;
     private final RackRepository repository;
     private final RackEntityKeys keys;
+    private final Supplier<PluginConfig> config;
+    private final ProtectionHooks protection;
 
-    public RackInteractListener(RackService service, RackRepository repository, RackEntityKeys keys) {
+    public RackInteractListener(RackService service, RackRepository repository, RackEntityKeys keys,
+                                Supplier<PluginConfig> config, ProtectionHooks protection) {
         this.service = service;
         this.repository = repository;
         this.keys = keys;
+        this.config = config;
+        this.protection = protection;
     }
 
     // ------------------------------------------------------------------------------------------------
@@ -57,7 +71,7 @@ public final class RackInteractListener implements Listener {
         event.setCancelled(true);
 
         Player player = event.getPlayer();
-        if (!player.hasPermission("racks.use")) {
+        if (!player.hasPermission("racks.use") || !canInteract(player, rack)) {
             return;
         }
         if (player.isSneaking()) {
@@ -85,7 +99,7 @@ public final class RackInteractListener implements Listener {
         event.setCancelled(true);
 
         Player player = event.getPlayer();
-        if (!player.hasPermission("racks.use")) {
+        if (!player.hasPermission("racks.use") || !canBreak(player, rack)) {
             return;
         }
         service.breakRack(rack, player.getWorld(), player);
@@ -104,7 +118,8 @@ public final class RackInteractListener implements Listener {
         }
         event.setCancelled(true);
 
-        if (!(event.getDamager() instanceof Player player) || !player.hasPermission("racks.use")) {
+        if (!(event.getDamager() instanceof Player player) || !player.hasPermission("racks.use")
+                || !canBreak(player, rack)) {
             return;
         }
         service.breakRack(rack, player.getWorld(), player);
@@ -113,6 +128,28 @@ public final class RackInteractListener implements Listener {
     // ------------------------------------------------------------------------------------------------
     // Helpers
     // ------------------------------------------------------------------------------------------------
+
+    private boolean canBreak(Player player, Rack rack) {
+        return protection.canBreak(player, rack.key().toLocation(player.getWorld()), this::isHookEnabled);
+    }
+
+    /** @see #canBreak */
+    private boolean canInteract(Player player, Rack rack) {
+        return protection.canInteract(player, rack.key().toLocation(player.getWorld()), this::isHookEnabled);
+    }
+
+    /**
+     * {@code protection.worldguard}/{@code protection.griefprevention}: each protection plugin's hook
+     * can be turned off without touching the other, independently of whether it is installed at all.
+     */
+    private boolean isHookEnabled(String hookName) {
+        PluginConfig cfg = config.get();
+        return switch (hookName) {
+            case "WorldGuard" -> cfg.isWorldGuardIntegrationEnabled();
+            case "GriefPrevention" -> cfg.isGriefPreventionIntegrationEnabled();
+            default -> true;
+        };
+    }
 
     /** The rack an interaction hitbox belongs to, or null when the entity is not one of ours. */
     private @Nullable Rack rackOf(Entity entity) {

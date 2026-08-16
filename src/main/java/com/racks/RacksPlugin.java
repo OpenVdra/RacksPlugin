@@ -13,6 +13,7 @@ import com.racks.listener.RackInteractListener;
 import com.racks.listener.RackItemUpgradeListener;
 import com.racks.listener.RackPlaceListener;
 import com.racks.migration.DatapackAdopter;
+import com.racks.protection.ProtectionHooks;
 import com.racks.render.RackEntityKeys;
 import com.racks.render.RackRenderer;
 import com.racks.scheduler.Scheduler;
@@ -87,8 +88,9 @@ public final class RacksPlugin extends JavaPlugin {
         wallSupport.start();
 
         DatapackAdopter adopter = new DatapackAdopter(repository, renderer, keys, placeable, getSLF4JLogger());
+        ProtectionHooks protection = ProtectionHooks.detect(getServer().getPluginManager(), getSLF4JLogger());
 
-        registerListeners(keys, renderer, adopter);
+        registerListeners(keys, renderer, adopter, protection);
         registerCommands();
 
         recipes = new RackRecipes(this, rackItems, lang);
@@ -149,10 +151,11 @@ public final class RacksPlugin extends JavaPlugin {
         }
     }
 
-    private void registerListeners(RackEntityKeys keys, RackRenderer renderer, DatapackAdopter adopter) {
+    private void registerListeners(RackEntityKeys keys, RackRenderer renderer, DatapackAdopter adopter,
+                                   ProtectionHooks protection) {
         var manager = getServer().getPluginManager();
         manager.registerEvents(new RackPlaceListener(service, rackItems, repository, scheduler), this);
-        manager.registerEvents(new RackInteractListener(service, repository, keys), this);
+        manager.registerEvents(new RackInteractListener(service, repository, keys, this::pluginConfig, protection), this);
         manager.registerEvents(new RackBlockListener(service), this);
         manager.registerEvents(new RackItemUpgradeListener(rackItems), this);
         manager.registerEvents(new RackChunkListener(this::pluginConfig, repository, renderer, keys,

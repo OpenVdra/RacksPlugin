@@ -73,7 +73,31 @@ Vật phẩm đang nằm trên giá thì luôn rơi, bất kể đặt giá tr�
 </ConfigProperty>
 </ConfigGroup>
 
-<ConfigProperty name="adopt-datapack-racks" value="true" type="boolean">
+<ConfigGroup name="protection">
+<ConfigProperty name="worldguard" value="true" type="boolean">
+
+Hỏi vùng WorldGuard trước khi cho người chơi phá giá treo hoặc đổi vật phẩm trên đó, khi WorldGuard
+đang cài. Không có tác dụng nếu chưa cài. Xem [Plugin bảo vệ đất](/vi/docs/protections) để biết mỗi
+hành động kiểm tra cờ nào.
+
+Tắt đi thì chỉ bỏ qua riêng phần kiểm tra của WorldGuard, độc lập với `griefprevention` bên dưới.
+Không ảnh hưởng đến việc đặt giá treo — đó là đặt block bình thường, đã được WorldGuard tự bảo vệ sẵn.
+
+</ConfigProperty>
+<ConfigProperty name="griefprevention" value="true" type="boolean">
+
+Hỏi mảnh đất GriefPrevention trước khi cho người chơi phá giá treo hoặc đổi vật phẩm trên đó, khi
+GriefPrevention đang cài. Không có tác dụng nếu chưa cài. Xem
+[Plugin bảo vệ đất](/vi/docs/protections) để biết mỗi hành động cần mức tin cậy nào.
+
+Tắt đi thì chỉ bỏ qua riêng phần kiểm tra của GriefPrevention, độc lập với `worldguard` phía trên.
+Không ảnh hưởng đến việc đặt giá treo — đó là đặt block bình thường, đã được GriefPrevention tự bảo
+vệ sẵn.
+
+</ConfigProperty>
+</ConfigGroup>
+
+<ConfigProperty name="adopt-datapack-racks" value="false" type="boolean">
 
 Nhập những giá treo do data pack Racks để lại trong thế giới, theo từng chunk khi chunk được tải.
 
@@ -104,6 +128,10 @@ settings:
   wall-support-check-interval: 10
   lootable-delay: 0
 
-adopt-datapack-racks: true
+protection:
+  worldguard: true
+  griefprevention: true
+
+adopt-datapack-racks: false
 recipes-enabled: true
 ```

@@ -11,7 +11,17 @@ First release. A Paper and Folia port of KawaMood's Racks data pack, version 3.2
 - Floor and wall racks in twelve woods, crafted from three planks and two sticks. Floor racks hold two tools, wall racks hold one.
 - Right-click a rack to put a tool on it or take one off. Sneak and right-click to change the pose, six on the floor and four on a wall. Left-click to break it.
 - Placed racks and their contents are stored in `plugins/Racks/racks.db`. Racks and the items on them survive a Minecraft version upgrade.
-- Racks left standing by the Racks data pack are imported automatically as their chunks load, keeping their wood, facing, items and pose. Turn it off with `adopt-datapack-racks` in `config.yml`.
+- A versioned schema migrator: an existing database is brought up to the schema a plugin version
+  expects by running only the migration steps newer than the version recorded in
+  `<prefix>schema_meta`, rather than by hand-checking columns. A fresh install still gets the latest
+  schema straight from `CREATE TABLE`.
+- Optional WorldGuard and GriefPrevention integration: breaking a rack or swapping its item is checked
+  against the region's `block-break`/`interact` flags, or the claim's Build/Inventory trust, whichever
+  plugin (or both) is installed. `protection.worldguard`/`protection.griefprevention` in `config.yml`
+  turn each off independently. Placing a rack needs no integration — it is a normal block placement,
+  so both plugins already protect it.
+- Racks left standing by the Racks data pack can be imported as their chunks load, keeping their wood,
+  facing, items and pose. Off by default; turn it on with `adopt-datapack-racks` in `config.yml`.
 - Rack items already in players' inventories keep working, and are refreshed into the plugin's form on their next login.
 - English and Vietnamese language files, with each player reading messages in their own game language. Add a folder under `language/` for any other language.
 - `/racks give` hands out a rack of any wood, `/racks reload` re-reads the config and language files, and `/racks setting ignore-wall-rack-support` reads or changes the wall support rule.

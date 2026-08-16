@@ -31,6 +31,7 @@ public final class SqliteRackStorage implements AutoCloseable {
 
     private final HikariDataSource dataSource;
     private final String table;
+    private final String metaTable;
 
     private final String insertSql;
     private final String updateSql;
@@ -39,6 +40,7 @@ public final class SqliteRackStorage implements AutoCloseable {
 
     public SqliteRackStorage(Path dataFolder, String fileName, String tablePrefix) {
         this.table = tablePrefix + "racks";
+        this.metaTable = tablePrefix + "schema_meta";
         this.dataSource = new HikariDataSource(buildConfig(dataFolder, fileName));
 
         this.insertSql = """
@@ -88,6 +90,10 @@ public final class SqliteRackStorage implements AutoCloseable {
         } catch (SQLException e) {
             throw new IllegalStateException("Could not initialise the Racks database", e);
         }
+
+        // Brings an existing, older database up to the current schema; a no-op on a fresh install,
+        // whose CREATE TABLE above already has every column. See SchemaMigrator.
+        SchemaMigrator.migrate(dataSource, table, metaTable);
     }
 
     /** Every stored rack. Called once on enable, before any listener is registered. */

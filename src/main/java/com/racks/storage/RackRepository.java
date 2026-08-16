@@ -41,6 +41,14 @@ import java.util.concurrent.atomic.AtomicInteger;
  * writes for one rack reach SQLite in exactly the order they happened — the last one wins and it is
  * the right one.
  *
+ * <h2>No dirty-tracking cache, no autosave interval</h2>
+ * A plugin caching per-player data buffers changes as "dirty" and flushes them on a timer, because a
+ * busy player can mutate their data many times a second. Racks don't have that problem — placing,
+ * breaking, swapping an item or turning a rack is a comparatively rare, deliberate action — so there
+ * is nothing worth batching: every mutation is handed to the writer queue immediately, not on the
+ * next tick of some interval. {@link #flush()} just drains whatever is still queued at shutdown; it
+ * is not a periodic flush of buffered state, since none exists.
+ *
  * <h2>Why this cannot duplicate items</h2>
  * The in-memory rack is the single source of truth while the server runs; the database is a
  * write-behind mirror of it. Nothing reads a rack back from SQLite until the next startup, so a slow
