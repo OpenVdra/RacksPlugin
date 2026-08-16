@@ -20,12 +20,6 @@ First release. A Paper and Folia port of KawaMood's Racks data pack, version 3.2
 - Installing a newer version brings an existing `racks.db` up to date on its own, with no manual step.
 - Operators are told on join when a newer release exists. Nothing is downloaded, and `update-checker` in `config.yml` turns the lookup off.
 
-### Changed
-
-Behaviour is the data pack's throughout, apart from one point:
-
-- Breaking the barrier under a floor rack in creative mode now breaks the rack. The data pack left the rack standing with nothing solid under it.
-
 ### Notes
 
 - Remove the Racks data pack before starting the server with this plugin. Running both means the two fight over the same racks.

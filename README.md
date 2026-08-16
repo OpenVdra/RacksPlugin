@@ -207,16 +207,6 @@ name in the player's language instead of the data pack's fixed English.
 Coming from Racks V.2? Run the V.3 data pack's `from_v2` upgrade first. The plugin can only read V.3
 racks.
 
-## Deliberate differences from the data pack
-
-Everything else is intentionally identical. This one is not:
-
-1. **Breaking the barrier breaks the rack.** A floor rack stands on a barrier, which only creative
-   mode can break. Nothing in the data pack watched that block, its only periodic check looks at
-   wall racks' supports, so breaking the barrier left the rack exactly where it was and it went on
-   working with nothing solid under it. Here that break is treated as breaking the rack, which is
-   what the person swinging meant.
-
 ## Building
 
 ```bash
