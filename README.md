@@ -1,20 +1,14 @@
 <div align="center">
 
-<img src="docs/public/banner.png" alt="Racks" width="720">
+![Racks in every wood](docs/public/media/showcase.jpeg)
 
-**Show off your tools.**
-Adds wooden display racks for tools and weapons. No resource pack required.
+A Paper/Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)** that adds wooden display racks for tools and weapons. No resource pack required.
 
-A Paper and Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)**, the Minecraft data
-pack by **KawaMood**.
-
-[Documentation](https://openvdra.github.io/RacksPlugin/) ·
-[Original data pack](https://modrinth.com/datapack/racks) ·
-[Changelog](CHANGELOG.md)
+[![Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg)](https://modrinth.com/plugin/racks)
+[![Documentation](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/documentation/ghpages_vector.svg)](https://openvdra.github.io/RacksPlugin/)
+[![GitHub](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/github_vector.svg)](https://github.com/OpenVdra/RacksPlugin)
 
 </div>
-
-![Racks in every wood](docs/public/media/showcase.jpeg)
 
 ---
 
@@ -22,12 +16,8 @@ Craft a wooden rack, put it on the floor or hang it on a wall, and display your 
 Right-click to swap an item in or out, sneak and right-click to change how the items are angled,
 left-click to take the rack back down.
 
-It's a port of the original data pack, so the item, the recipe and the poses all look the same.
-What's different is underneath: racks and everything on them save automatically to their own
-database, so nothing is lost across a Minecraft version upgrade.
-
-- **Minecraft:** 1.21.11
-- **Server:** Paper (and forks) or Folia
+- **Minecraft:** 1.21.11+
+- **Server:** Paper/Folia or compatible fork
 - **Java:** 21
 
 ## Features
@@ -54,6 +44,12 @@ database, so nothing is lost across a Minecraft version upgrade.
 </tr>
 </table>
 
+## Crafting
+
+Three planks in a row, two sticks below the ends. Any of the twelve woods works.
+
+<img src="docs/public/media/recipe.gif" alt="Rack crafting recipe" width="420">
+
 ### What a rack will hold
 
 Floor racks take axes, hoes, pickaxes, shovels, spears, swords, maces, carrots on a stick, warped
@@ -62,23 +58,6 @@ shields, shears and spyglasses. Holding anything else and right-clicking does no
 
 This goes by the item's actual type, not its name or texture, so a reskinned axe, sword, bow and so on
 from ItemsAdder, Oraxen, Nexo or similar plugins goes on a rack the same as a vanilla one.
-
-## Installing
-
-1. Drop `Racks-<version>.jar` into `plugins/`.
-2. **Remove the Racks data pack first** if you were using it. See [Migrating](#migrating-from-the-data-pack).
-3. Start the server.
-
-No resource pack is required. The rack item is a player head with a custom skin and the rack itself
-is built from vanilla fences and buttons, so it looks right on a vanilla client. The item still
-carries the data pack's `custom_model_data` strings, so an existing Racks resource pack keeps working
-if you have one.
-
-## Crafting
-
-Three planks in a row, two sticks below the ends. Any of the twelve woods works.
-
-<img src="docs/public/media/recipe.gif" alt="Rack crafting recipe" width="420">
 
 ## Commands
 
@@ -99,66 +78,6 @@ Three planks in a row, two sticks below the ends. Any of the twelve woods works.
 
 `racks.use` defaults to true because the data pack gated nothing. Out of the box the plugin behaves
 identically. Negate it for a group to restrict racks.
-
-## Configuration
-
-`plugins/Racks/config.yml`:
-
-```yaml
-language: en_US
-language-auto-detect: true
-
-database:
-  file: racks.db
-
-settings:
-  ignore-wall-rack-support: false
-  wall-support-check-interval: 10
-
-protection:
-  worldguard: true
-  griefprevention: true
-
-adopt-datapack-racks: false
-recipes-enabled: true
-update-checker: true
-```
-
-**`ignore-wall-rack-support`** is off by default, matching the data pack: a wall rack drops itself
-when the block it hangs on is removed. Turn it on and wall racks stay put with no support, and the
-periodic check stops running.
-
-**`wall-support-check-interval`** is how often, in ticks, hanging racks re-check their support. The
-data pack scheduled this every 10 ticks. The plugin runs one task per *chunk that actually holds a
-wall rack*, so a server with none schedules nothing.
-
-**`recipes-enabled`** turns the twelve crafting recipes off, leaving `/racks give` and your own loot
-tables.
-
-**`update-checker`** looks up the newest release once at startup and tells operators when there is
-one, in chat and in the console. Nothing is downloaded. Modrinth is asked first, with the GitHub
-releases page as a fallback. Needs a restart to take effect.
-
-**`worldguard`** and **`griefprevention`**, under `protection`, each check their matching plugin
-before a player breaks a rack or swaps its item. See [Protection plugins](#protection-plugins) below.
-Either can be turned off without touching the other, and both are ignored when that plugin is not
-installed. Putting a rack down is a normal block placement, which both plugins already cover.
-
-### Languages
-
-`plugins/Racks/language/en_US/messages.yml` and `vi_VN/messages.yml` ship with the plugin. Add your
-own by creating `language/<locale>/messages.yml`. It is picked up on the next `/racks reload`, no
-plugin update needed.
-
-With `language-auto-detect: true` each player sees messages in their own client language, falling
-back to `language:` and then to `en_US`. Set it to `false` to put everyone on one language, which is
-how the data pack behaved.
-
-> [!NOTE]
-> Item names are baked into the item rather than re-rendered per viewer, so a rack is named in the
-> language of whoever received it. On a mixed-language server that means racks named in different
-> languages will not stack with each other. Set `language-auto-detect: false` if you would rather they
-> always did.
 
 ## Protection plugins
 

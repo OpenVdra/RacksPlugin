@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Racks"
-  text: "Show off your tools"
-  tagline: Adds wooden display racks for tools and weapons. No resource pack required.
+  text: "Add wooden display racks for tools and weapons"
+  tagline: No resource pack required.
   image:
     src: /logo.png
     alt: Racks

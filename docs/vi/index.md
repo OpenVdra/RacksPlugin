@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Racks"
-  text: "Khoe công cụ của bạn"
-  tagline: Thêm giá treo bằng gỗ để trưng bày công cụ và vũ khí. Không cần resource pack.
+  text: "Giá treo bằng gỗ cho công cụ và vũ khí"
+  tagline: Không cần resource pack.
   image:
     src: /logo.png
     alt: Racks

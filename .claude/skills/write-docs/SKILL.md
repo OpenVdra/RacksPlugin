@@ -113,11 +113,12 @@ The comment above a setting is the only documentation most admins ever read. It 
 
 The store page. It sells the plugin to someone who has never heard of it, in one screen.
 
-- Lead with a plain one-line tagline plus a one-line description, the way the README does: "**Show off your tools.** Adds wooden display racks for tools and weapons. No resource pack required." Not a rhetorical problem statement.
+- Lead with one plain sentence saying what the plugin adds, the way the README does: "Adds wooden display racks for tools and weapons. No resource pack required." Not a rhetorical problem statement, not a marketing tagline.
 - A `## Highlights` list of short bullets, each opening with a bolded phrase. Link the bullet's phrase to the matching docs page when there is one.
 - Include the screenshot section, the command tables, and a `## Get started` block naming the Minecraft version, server software, and Java version.
 - Raw HTML is allowed here because Modrinth renders it, unlike the rest of the docs. Badges and centered images are fine.
 - Keep it in sync with the feature set. A highlight that no longer exists is worse than no highlight.
+- Highlights are for what makes someone install the plugin: what it looks like, what it does in game, and compatibility that changes whether it works on their server (WorldGuard/GriefPrevention, data pack migration). Leave out engineering claims the reader can't act on either way, like Folia thread-safety, storage internals, or that translations live in a folder, those belong on the docs site, not the store page.
 
 ## Before finishing
 

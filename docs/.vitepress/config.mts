@@ -70,7 +70,7 @@ const viSidebarMap = {
 
 export default defineConfig({
   title: 'Racks',
-  description: 'Show off your tools and weapons on wall and ground racks. A Paper and Folia port of KawaMood\'s Racks data pack.',
+  description: 'Adds wooden display racks for tools and weapons. A Paper and Folia port of KawaMood\'s Racks data pack.',
   // GitHub project pages are served from /RacksPlugin/. Point a custom domain at the site
   // (add public/CNAME) and change this back to '/'.
   base: '/RacksPlugin/',
