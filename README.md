@@ -22,11 +22,9 @@ Craft a wooden rack, put it on the floor or hang it on a wall, and display your 
 Right-click to swap an item in or out, sneak and right-click to change how the items are angled,
 left-click to take the rack back down.
 
-Everything a player sees is the data pack's: the same head item, the same recipe, racks built from
-the same display entities at the same offsets, the same poses, the same rules about what a rack will
-hold. What changed is underneath. Racks are stored in SQLite, and each item on a rack is saved with
-Paper's own serializer, so a rack can hold anything a player can carry and keep it intact across a
-Minecraft version upgrade.
+It's a port of the original data pack, so the item, the recipe and the poses all look the same.
+What's different is underneath: racks and everything on them save automatically to their own
+database, so nothing is lost across a Minecraft version upgrade.
 
 - **Minecraft:** 1.21.11
 - **Server:** Paper (and forks) or Folia
@@ -39,7 +37,7 @@ Minecraft version upgrade.
 | **12 wood variants** | Oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, pale oak, bamboo, crimson, warped |
 | **Floor and wall racks** | Two slots on the floor, one on a wall, each with its own frame and click areas |
 | **Poses** | Six arrangements on the floor, four on a wall, cycled with sneak + right-click |
-| **SQLite storage** | Placed racks and their contents live in `plugins/Racks/racks.db` |
+| **Persistent storage** | Placed racks and their contents live in `plugins/Racks/racks.db`, and survive a restart |
 | **Per-player language** | English and Vietnamese included; each player reads their own client language |
 | **Folia support** | A rack is only ever touched from the thread that owns its block |
 | **Data pack migration** | Racks left standing by the original data pack can be imported on request |
@@ -60,8 +58,10 @@ Minecraft version upgrade.
 
 Floor racks take axes, hoes, pickaxes, shovels, spears, swords, maces, carrots on a stick, warped
 fungus on a stick and fishing rods. Wall racks take all of those plus bows, crossbows, tridents,
-shields, shears and spyglasses. Holding anything else and right-clicking does nothing at all, exactly
-as in the data pack.
+shields, shears and spyglasses. Holding anything else and right-clicking does nothing at all.
+
+This goes by the item's actual type, not its name or texture, so a reskinned axe, sword, bow and so on
+from ItemsAdder, Oraxen, Nexo or similar plugins goes on a rack the same as a vanilla one.
 
 ## Installing
 

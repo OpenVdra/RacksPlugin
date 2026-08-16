@@ -8,9 +8,10 @@
 
 </div>
 
-Tools and weapons deserve better than a chest. **Racks** puts them on display: a wooden rack on the floor or on the wall, holding a pickaxe, a sword or a trident where everyone can see it.
+**Show off your tools.**
+**Racks** adds wooden display racks for tools and weapons. No resource pack required.
 
-This is a Paper and Folia port of **[KawaMood's Racks data pack](https://modrinth.com/datapack/racks)**. Everything a player sees is the data pack's, down to the recipe and the poses. What changed is underneath, so racks now survive a Minecraft version upgrade with their items intact.
+A Paper and Folia port of **[KawaMood's Racks data pack](https://modrinth.com/datapack/racks)**. Racks and their items save automatically, so nothing is lost across a Minecraft version upgrade.
 
 ## Highlights
 
@@ -18,7 +19,7 @@ This is a Paper and Folia port of **[KawaMood's Racks data pack](https://modrint
 
 - **Six floor poses, four wall poses**: sneak and right-click to angle the gear until it looks right.
 
-- **Items are safe across updates**: every rack and what is on it is saved to the plugin's own database, not to command storage.
+- **Items are safe across updates**: every rack and what's on it saves automatically and survives a Minecraft version upgrade.
 
 - [**WorldGuard and GriefPrevention**](https://openvdra.github.io/RacksPlugin/docs/protections): regions and claims are checked before a rack is broken or an item swapped. No setup, both can be switched off separately.
 
@@ -59,6 +60,8 @@ Three planks in a row, two sticks below the ends. Any of the twelve woods works.
 | Left-click | Break the rack, dropping it and everything on it |
 
 Floor racks take axes, hoes, pickaxes, shovels, spears, swords, maces, carrots on a stick, warped fungus on a stick and fishing rods. Wall racks take all of those plus bows, crossbows, tridents, shields, shears and spyglasses.
+
+This goes by the item's actual type, not its name or texture, so reskinned items from ItemsAdder, Oraxen, Nexo or similar plugins work the same as vanilla ones.
 
 ## Commands
 

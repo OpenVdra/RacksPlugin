@@ -20,6 +20,8 @@ You are writing for **server owners and players**, not developers. They install 
 - Never use the em-dash character. Use a comma, a full stop, or rewrite the sentence.
 - Never use emoji anywhere.
 - Match the existing tone of the file you are editing.
+- Write like a person telling another person what the plugin does, not like ad copy. No personification ("tools deserve better"), no rhetorical problem-then-fix openers, no "puts them on display" style flourishes. State the fact plainly: "Adds wooden display racks for tools and weapons."
+- Mention the data pack relationship once per page, briefly. Don't build a sentence out of "same as the data pack" repeated for each detail (recipe, poses, rules, offsets...). One line establishing it's a port is enough; let the rest of the page just describe what the plugin does.
 
 ## Changelog
 
@@ -111,7 +113,7 @@ The comment above a setting is the only documentation most admins ever read. It 
 
 The store page. It sells the plugin to someone who has never heard of it, in one screen.
 
-- Lead with the problem the plugin solves, then the fix, in two sentences at most.
+- Lead with a plain one-line tagline plus a one-line description, the way the README does: "**Show off your tools.** Adds wooden display racks for tools and weapons. No resource pack required." Not a rhetorical problem statement.
 - A `## Highlights` list of short bullets, each opening with a bolded phrase. Link the bullet's phrase to the matching docs page when there is one.
 - Include the screenshot section, the command tables, and a `## Get started` block naming the Minecraft version, server software, and Java version.
 - Raw HTML is allowed here because Modrinth renders it, unlike the rest of the docs. Badges and centered images are fine.
