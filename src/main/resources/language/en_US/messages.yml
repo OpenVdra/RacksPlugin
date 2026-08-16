@@ -14,16 +14,16 @@ command:
   # Shown to the receiving player.
   give-received: '{prefix}<gray>You received {count}× {variant}.'
   # Inventory was full; {dropped} stacks landed on the floor instead.
-  give-dropped: '{prefix}<gray>Your inventory was full — {dropped} rack(s) dropped at your feet.'
+  give-dropped: '{prefix}<gray>Your inventory was full, {dropped} rack(s) dropped at your feet.'
   reloaded: '{prefix}<gray>Configuration and language files reloaded.'
 
-setting:
-  # {setting} = the human name below, {value} = true/false.
-  get: '<gray>Setting "<yellow>{setting}</yellow>" is currently set to <yellow>{value}</yellow>'
-  set: '<gray>Setting "<yellow>{setting}</yellow>" has been set to <yellow>{value}</yellow>'
-  already: '<red>Setting "<yellow>{setting}</yellow>" is already set to <yellow>{value}</yellow>'
-  name:
-    ignore-wall-rack-support: 'Ignore Wall Rack Support'
+# Shown to operators on join when a newer release exists. Nothing is downloaded automatically.
+update:
+  available: '{prefix}<gray>A new version is out: <green>{latest}</green> <dark_gray>(running {current})'
+  # {url} arrives as a ready-made clickable link. Keep it in text position, never inside a
+  # <click:...> tag, where it would not be substituted.
+  download: '{prefix}{url}'
+  download-label: 'Click here to download it.'
 
 # Item name and lore of the rack item itself. The data pack showed a yellow name with a matching
 # dark grey lore line; keep {variant} where the wood name belongs.

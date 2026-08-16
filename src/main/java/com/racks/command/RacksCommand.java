@@ -21,12 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * {@code /racks} — hand out racks, reload, and read or flip the wall-support setting.
- *
- * <p>The setting subcommand exists because the data pack exposed the same toggle as a function, and
- * a server that had it turned off would otherwise lose it in the port. Flipping it writes through to
- * {@code config.yml} and restarts the support sweep, so it survives a restart rather than reverting
- * the way the data pack's scoreboard value did.
+ * {@code /racks} — hand out racks and reload the plugin.
  *
  * <p>Registered through Paper's Brigadier API, which gives real argument types, per-branch permission
  * checks and tab completion that only offers what the sender can actually run.
@@ -35,9 +30,6 @@ public final class RacksCommand {
 
     private static final String PERM_GIVE = "racks.command.give";
     private static final String PERM_RELOAD = "racks.command.reload";
-    private static final String PERM_SETTING = "racks.command.setting";
-
-    private static final String SETTING_WALL_SUPPORT = "ignore-wall-rack-support";
 
     private final RacksPlugin plugin;
 
@@ -48,11 +40,9 @@ public final class RacksCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("racks")
                 .requires(source -> source.getSender().hasPermission(PERM_GIVE)
-                        || source.getSender().hasPermission(PERM_RELOAD)
-                        || source.getSender().hasPermission(PERM_SETTING))
+                        || source.getSender().hasPermission(PERM_RELOAD))
                 .then(giveBranch())
                 .then(reloadBranch())
-                .then(settingBranch())
                 .build();
     }
 
@@ -160,44 +150,5 @@ public final class RacksCommand {
                     ctx.getSource().getSender().sendMessage(plugin.languageManager().get("command.reloaded"));
                     return 1;
                 });
-    }
-
-    // ------------------------------------------------------------------------------------------------
-    // /racks setting ignore-wall-rack-support [true|false]
-    // ------------------------------------------------------------------------------------------------
-
-    private LiteralArgumentBuilder<CommandSourceStack> settingBranch() {
-        return Commands.literal("setting")
-                .requires(source -> source.getSender().hasPermission(PERM_SETTING))
-                .then(Commands.literal(SETTING_WALL_SUPPORT)
-                        .executes(ctx -> {
-                            ctx.getSource().getSender().sendMessage(
-                                    settingMessage("setting.get", plugin.pluginConfig().isIgnoreWallRackSupport()));
-                            return 1;
-                        })
-                        .then(Commands.literal("true").executes(ctx -> setWallSupport(ctx, true)))
-                        .then(Commands.literal("false").executes(ctx -> setWallSupport(ctx, false))));
-    }
-
-    private int setWallSupport(CommandContext<CommandSourceStack> ctx, boolean value) {
-        CommandSender sender = ctx.getSource().getSender();
-        if (plugin.pluginConfig().isIgnoreWallRackSupport() == value) {
-            sender.sendMessage(settingMessage("setting.already", value));
-            return 0;
-        }
-        plugin.setIgnoreWallRackSupport(value);
-        sender.sendMessage(settingMessage("setting.set", value));
-        return 1;
-    }
-
-    /**
-     * A setting message with the setting's own display name nested inside it, so both the name and the
-     * sentence around it come from the language file and resolve for the reader.
-     */
-    private Component settingMessage(String key, boolean value) {
-        LanguageManager lang = plugin.languageManager();
-        return lang.getArgs(key,
-                LanguageManager.arg("setting", lang.get("setting.name." + SETTING_WALL_SUPPORT)),
-                LanguageManager.arg("value", Boolean.toString(value)));
     }
 }

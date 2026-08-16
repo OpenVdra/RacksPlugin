@@ -66,7 +66,6 @@ Floor racks take axes, hoes, pickaxes, shovels, spears, swords, maces, carrots o
 |---|---|---|
 | `/racks give <variant> [player] [count]` | `racks.command.give` | Hand out a rack of any wood |
 | `/racks reload` | `racks.command.reload` | Re-read the config and language files |
-| `/racks setting ignore-wall-rack-support [true\|false]` | `racks.command.setting` | Read or change the wall support rule |
 
 `/rack` is an alias. Using racks is gated by `racks.use`, which is on for everyone by default, matching the data pack.
 

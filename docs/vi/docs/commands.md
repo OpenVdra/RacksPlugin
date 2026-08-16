@@ -27,21 +27,6 @@ Dùng lệnh này sau khi sửa bất kỳ file nào trong `plugins/Racks/`.
 
 </CommandRow>
 
-<CommandRow commands="/racks setting ignore-wall-rack-support" permission="racks.command.setting">
-
-Cho biết giá treo tường hiện có rơi khi khối đỡ bị phá hay không.
-
-</CommandRow>
-
-<CommandRow commands="/racks setting ignore-wall-rack-support &lt;true|false&gt;" permission="racks.command.setting">
-
-Bật hoặc tắt hành vi đó. Giá trị mới được ghi vào `config.yml` nên vẫn giữ sau khi khởi động lại.
-
-`true` nghĩa là giá treo tường ở nguyên chỗ dù không còn khối đỡ. `false` là mặc định và giống data
-pack.
-
-</CommandRow>
-
 </BaseTable>
 
 ## Ví dụ
@@ -58,8 +43,8 @@ Phát cho người chơi khác mười sáu giá treo gỗ anh đào:
 /racks give cherry Steve 16
 ```
 
-Không cho giá treo tường rơi khi bức tường bị đào:
+Áp dụng thay đổi vừa sửa trong `config.yml`:
 
 ```
-/racks setting ignore-wall-rack-support true
+/racks reload
 ```

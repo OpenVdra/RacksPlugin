@@ -22,6 +22,3 @@ permissions:
   racks.command.reload:
     description: Use /racks reload
     default: op
-  racks.command.setting:
-    description: Use /racks setting
-    default: op

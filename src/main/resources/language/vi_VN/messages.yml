@@ -10,15 +10,16 @@ command:
   give-self: '{prefix}<gray>Đã nhận {count}× {variant}.'
   give-other: '{prefix}<gray>Đã đưa {count}× {variant} cho {player}.'
   give-received: '{prefix}<gray>Bạn vừa nhận được {count}× {variant}.'
-  give-dropped: '{prefix}<gray>Túi đồ của bạn đã đầy — {dropped} giá treo đã rơi xuống đất.'
+  give-dropped: '{prefix}<gray>Túi đồ của bạn đã đầy, {dropped} giá treo đã rơi xuống đất.'
   reloaded: '{prefix}<gray>Đã tải lại cấu hình và các tệp ngôn ngữ.'
 
-setting:
-  get: '<gray>Tùy chọn "<yellow>{setting}</yellow>" đang được đặt là <yellow>{value}</yellow>'
-  set: '<gray>Tùy chọn "<yellow>{setting}</yellow>" đã được đặt thành <yellow>{value}</yellow>'
-  already: '<red>Tùy chọn "<yellow>{setting}</yellow>" vốn đã là <yellow>{value}</yellow>'
-  name:
-    ignore-wall-rack-support: 'Bỏ qua điểm tựa của giá treo tường'
+# Hiện cho người vận hành khi vào máy chủ nếu có bản mới. Plugin không tự tải gì về.
+update:
+  available: '{prefix}<gray>Đã có bản mới: <green>{latest}</green> <dark_gray>(đang chạy {current})'
+  # {url} là một liên kết bấm được đã dựng sẵn. Hãy để nó ở vị trí chữ, đừng đặt trong thẻ
+  # <click:...> vì ở đó nó sẽ không được thay thế.
+  download: '{prefix}{url}'
+  download-label: 'Bấm vào đây để tải về.'
 
 # Tên và mô tả của vật phẩm giá treo. Bản data pack gốc dùng tên màu vàng kèm một dòng mô tả xám
 # đậm giống hệt; hãy giữ {variant} ở vị trí tên loại gỗ.

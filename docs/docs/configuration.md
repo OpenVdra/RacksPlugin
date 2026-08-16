@@ -49,8 +49,6 @@ Whether a wall rack survives losing the block it hangs on.
 `false` matches the data pack: the rack drops itself and its items, the way a painting does. `true`
 leaves it floating, and stops the check below running at all.
 
-`/racks setting ignore-wall-rack-support <true|false>` changes this in game and writes it back here.
-
 </ConfigProperty>
 <ConfigProperty name="wall-support-check-interval" value="10" type="number">
 
@@ -99,6 +97,16 @@ Off means racks cannot be crafted at all, and come only from `/racks give` or lo
 the server owner.
 
 </ConfigProperty>
+<ConfigProperty name="update-checker" value="true" type="boolean">
+
+Look up the newest release once at startup, and tell operators in chat and in the console when a
+newer one exists.
+
+**Needs a full restart.** Nothing is ever downloaded or installed, only the version number is read.
+Modrinth is asked first, and the GitHub releases page stands in when it cannot be reached. Off stops
+the lookup entirely, which is the setting to use on a server with no outbound internet access.
+
+</ConfigProperty>
 
 ## The whole file
 
@@ -119,4 +127,5 @@ protection:
 
 adopt-datapack-racks: false
 recipes-enabled: true
+update-checker: true
 ```

@@ -50,8 +50,6 @@ Giá treo tường có trụ lại được khi mất khối đỡ hay không.
 `false` giống data pack: giá treo tự rơi cùng vật phẩm trên nó, như một bức tranh. `true` để nó lơ
 lửng, và ngừng luôn việc kiểm tra bên dưới.
 
-`/racks setting ignore-wall-rack-support <true|false>` đổi được ngay trong game và ghi lại vào đây.
-
 </ConfigProperty>
 <ConfigProperty name="wall-support-check-interval" value="10" type="number">
 
@@ -100,6 +98,16 @@ Tắt đi thì không chế tạo được giá treo, và giá treo chỉ đến
 máy chủ tự thêm.
 
 </ConfigProperty>
+<ConfigProperty name="update-checker" value="true" type="boolean">
+
+Tra bản phát hành mới nhất một lần lúc khởi động, rồi báo cho người vận hành trong chat và trong
+console nếu có bản mới hơn.
+
+**Cần khởi động lại máy chủ.** Plugin không tải hay cài gì cả, chỉ đọc số phiên bản. Modrinth được
+hỏi trước, nếu không kết nối được thì dùng trang phát hành trên GitHub. Tắt đi thì bỏ hẳn lượt tra
+này, phù hợp với máy chủ không có kết nối ra ngoài.
+
+</ConfigProperty>
 
 ## Toàn bộ file
 
@@ -120,4 +128,5 @@ protection:
 
 adopt-datapack-racks: false
 recipes-enabled: true
+update-checker: true
 ```

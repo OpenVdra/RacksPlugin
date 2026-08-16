@@ -5,10 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 /**
  * Typed, immutable snapshot of {@code config.yml}. Re-created on {@code /racks reload}; every
  * consumer reads through the plugin so a reload is picked up without stale references.
- *
- * <p>The one mutable value is {@link #isIgnoreWallRackSupport()}, because the data pack exposed it
- * as a runtime toggle ({@code /function pk_racks:settings/...}) and this port keeps that: the
- * command writes it back to disk and flips the live value.
  */
 public final class PluginConfig {
 
@@ -16,13 +12,13 @@ public final class PluginConfig {
     private final boolean autoDetectLanguage;
     private final String databaseFile;
     private final String tablePrefix;
+    private final boolean ignoreWallRackSupport;
     private final int wallSupportCheckInterval;
     private final boolean worldGuardIntegration;
     private final boolean griefPreventionIntegration;
     private final boolean adoptDatapackRacks;
     private final boolean recipesEnabled;
-
-    private volatile boolean ignoreWallRackSupport;
+    private final boolean updateChecker;
 
     public PluginConfig(FileConfiguration config) {
         this.language = config.getString("language", "en_US");
@@ -35,6 +31,7 @@ public final class PluginConfig {
         this.griefPreventionIntegration = config.getBoolean("protection.griefprevention", true);
         this.adoptDatapackRacks = config.getBoolean("adopt-datapack-racks", false);
         this.recipesEnabled = config.getBoolean("recipes-enabled", true);
+        this.updateChecker = config.getBoolean("update-checker", true);
     }
 
     /**
@@ -66,10 +63,6 @@ public final class PluginConfig {
         return ignoreWallRackSupport;
     }
 
-    public void setIgnoreWallRackSupport(boolean value) {
-        this.ignoreWallRackSupport = value;
-    }
-
     public int getWallSupportCheckInterval() {
         return wallSupportCheckInterval;
     }
@@ -88,5 +81,10 @@ public final class PluginConfig {
 
     public boolean isRecipesEnabled() {
         return recipesEnabled;
+    }
+
+    /** Read once at enable; the check does not re-run on {@code /racks reload}. */
+    public boolean isUpdateCheckerEnabled() {
+        return updateChecker;
     }
 }

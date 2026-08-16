@@ -15,9 +15,10 @@ First release. A Paper and Folia port of KawaMood's Racks data pack, version 3.2
 - Racks left standing by the Racks data pack can be imported as their chunks load, keeping their wood, facing, items and pose. Turned on with `adopt-datapack-racks` in `config.yml`.
 - Rack items already in player inventories keep working, and take their new name on the next login.
 - English and Vietnamese messages, with each player reading their own game language. Other languages can be added as a folder under `language/`.
-- `/racks give` hands out a rack of any wood, `/racks reload` re-reads the config and language files, and `/racks setting ignore-wall-rack-support` reads or changes the wall support rule.
+- `/racks give` hands out a rack of any wood, and `/racks reload` re-reads the config and language files.
 - A rack whose frame is missing when its chunk loads is rebuilt, so a restored backup or a stray `/kill` no longer leaves a rack nobody can see or click.
 - Installing a newer version brings an existing `racks.db` up to date on its own, with no manual step.
+- Operators are told on join when a newer release exists. Nothing is downloaded, and `update-checker` in `config.yml` turns the lookup off.
 
 ### Changed
 

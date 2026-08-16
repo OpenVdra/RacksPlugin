@@ -4,6 +4,7 @@ import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 
 import java.util.concurrent.TimeUnit;
@@ -63,6 +64,15 @@ public final class Scheduler {
     /** Runs once on the thread that owns {@code location}'s region (main thread on Paper). */
     public void runAtLocation(Location location, Runnable task) {
         Bukkit.getRegionScheduler().run(plugin, location, t -> task.run());
+    }
+
+    /**
+     * Runs once on the thread that owns {@code entity}, after {@code delayTicks}. An entity carries
+     * its own scheduler because it moves between regions; the task is simply dropped if the entity
+     * is gone by then (a player who logged straight back out, say).
+     */
+    public void runAtEntityLater(Entity entity, Runnable task, long delayTicks) {
+        entity.getScheduler().runDelayed(plugin, t -> task.run(), null, Math.max(1, delayTicks));
     }
 
     /**

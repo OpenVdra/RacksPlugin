@@ -66,9 +66,10 @@ public final class WallSupportService implements RackRepository.WallRackListener
     /**
      * Re-reads the setting and starts or stops accordingly. The data pack's
      * {@code settings/ignore_wall_rack_support/{true,false}} cleared and re-scheduled its function;
-     * this does the same thing to the per-chunk tasks.
+     * this does the same thing to the per-chunk tasks. Reached through {@link #restart()}, which is
+     * what {@code /racks reload} calls.
      */
-    public void refresh() {
+    private void refresh() {
         if (!running) return;
         if (config.get().isIgnoreWallRackSupport()) {
             cancelAll();

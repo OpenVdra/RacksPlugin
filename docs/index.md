@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Racks"
   text: "Show off your tools"
-  tagline: Your tools and weapons no longer have to envy the armor stands. Give them a display of their own, on the floor or on the wall.
+  tagline: Adds wooden display racks for tools and weapons. No resource pack required.
   image:
     src: /logo.png
     alt: Racks

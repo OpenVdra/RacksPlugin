@@ -3,8 +3,7 @@
 <img src="docs/public/banner.png" alt="Racks" width="720">
 
 **Show off your tools.**
-Your tools and weapons no longer have to envy the armor stands.
-Give them a display of their own, on the floor or on the wall.
+Adds wooden display racks for tools and weapons. No resource pack required.
 
 A Paper and Folia plugin port of **[Racks](https://modrinth.com/datapack/racks)**, the Minecraft data
 pack by **KawaMood**.
@@ -87,7 +86,6 @@ Three planks in a row, two sticks below the ends. Any of the twelve woods works.
 |---|---|---|
 | `/racks give <variant> [player] [count]` | `racks.command.give` | Hand out a rack |
 | `/racks reload` | `racks.command.reload` | Re-read `config.yml` and the language files |
-| `/racks setting ignore-wall-rack-support [true\|false]` | `racks.command.setting` | Read or flip the wall support rule |
 
 `/rack` is an alias.
 
@@ -98,7 +96,6 @@ Three planks in a row, two sticks below the ends. Any of the twelve woods works.
 | `racks.use` | `true` | Place racks, swap items, change pose, break them |
 | `racks.command.give` | `op` | |
 | `racks.command.reload` | `op` | |
-| `racks.command.setting` | `op` | |
 
 `racks.use` defaults to true because the data pack gated nothing. Out of the box the plugin behaves
 identically. Negate it for a group to restrict racks.
@@ -124,12 +121,12 @@ protection:
 
 adopt-datapack-racks: false
 recipes-enabled: true
+update-checker: true
 ```
 
 **`ignore-wall-rack-support`** is off by default, matching the data pack: a wall rack drops itself
 when the block it hangs on is removed. Turn it on and wall racks stay put with no support, and the
-periodic check stops running. `/racks setting` writes this through to disk, so unlike the data pack's
-scoreboard toggle it survives a restart.
+periodic check stops running.
 
 **`wall-support-check-interval`** is how often, in ticks, hanging racks re-check their support. The
 data pack scheduled this every 10 ticks. The plugin runs one task per *chunk that actually holds a
@@ -137,6 +134,10 @@ wall rack*, so a server with none schedules nothing.
 
 **`recipes-enabled`** turns the twelve crafting recipes off, leaving `/racks give` and your own loot
 tables.
+
+**`update-checker`** looks up the newest release once at startup and tells operators when there is
+one, in chat and in the console. Nothing is downloaded. Modrinth is asked first, with the GitHub
+releases page as a fallback. Needs a restart to take effect.
 
 **`worldguard`** and **`griefprevention`**, under `protection`, each check their matching plugin
 before a player breaks a rack or swaps its item. See [Protection plugins](#protection-plugins) below.

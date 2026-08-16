@@ -25,12 +25,10 @@ phẩm, xem [Plugin bảo vệ đất](/vi/docs/protections).
 ## Lệnh
 
 Mỗi lệnh có quyền riêng. Không có quyền cha dùng chung, nên cấp quyền này không đồng nghĩa cấp luôn
-quyền kia. Cả ba mặc định dành cho người vận hành.
+quyền kia. Cả hai mặc định dành cho người vận hành.
 
 **`racks.command.give`** - `/racks give`: phát giá treo thuộc loại gỗ bất kỳ.
 
 **`racks.command.reload`** - `/racks reload`: đọc lại cấu hình và file ngôn ngữ.
 
-**`racks.command.setting`** - `/racks setting`: xem hoặc đổi quy tắc điểm tựa của giá treo tường.
-
-Người chơi không có quyền nào trong ba quyền trên sẽ không nhìn thấy `/racks` trong danh sách lệnh.
+Người chơi không có cả hai quyền trên sẽ không nhìn thấy `/racks` trong danh sách lệnh.

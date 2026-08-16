@@ -40,3 +40,8 @@ adopt-datapack-racks: false
 # Register the twelve crafting recipes. Off means racks come only from /racks give or your own
 # loot tables.
 recipes-enabled: true
+
+# NEED RESTART:
+# Look up the newest release once at startup and tell operators, in chat and in the console, when
+# a newer one exists. Nothing is downloaded or installed. Off stops the lookup entirely.
+update-checker: true

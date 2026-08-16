@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Racks"
   text: "Khoe công cụ của bạn"
-  tagline: Công cụ và vũ khí của bạn không cần ghen tị với giá đỡ giáp nữa. Hãy cho chúng một chỗ trưng bày riêng, trên sàn hoặc trên tường.
+  tagline: Thêm giá treo bằng gỗ để trưng bày công cụ và vũ khí. Không cần resource pack.
   image:
     src: /logo.png
     alt: Racks

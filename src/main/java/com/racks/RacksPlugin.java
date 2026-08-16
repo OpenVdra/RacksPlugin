@@ -21,6 +21,8 @@ import com.racks.serialization.ItemCodec;
 import com.racks.service.RackService;
 import com.racks.storage.RackRepository;
 import com.racks.storage.SqliteRackStorage;
+import com.racks.update.UpdateChecker;
+import com.racks.update.UpdateNotifyListener;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import net.kyori.adventure.translation.GlobalTranslator;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -101,6 +103,8 @@ public final class RacksPlugin extends JavaPlugin {
             recipes.register();
         }
 
+        startUpdateChecker();
+
         getSLF4JLogger().info("Racks enabled with {} rack(s) loaded{}",
                 repository.size(), scheduler.isFolia() ? " (Folia)" : "");
     }
@@ -162,6 +166,21 @@ public final class RacksPlugin extends JavaPlugin {
                 adopter, scheduler, getSLF4JLogger()), this);
     }
 
+    /**
+     * Looks up the newest release once, off-thread, and registers the listener that tells operators
+     * about it as they join. Deliberately not re-run by {@link #reloadPlugin()}: one lookup per
+     * startup is the whole contract, and a reload loop should not turn into a stream of requests.
+     */
+    private void startUpdateChecker() {
+        if (!config.isUpdateCheckerEnabled()) {
+            return;
+        }
+        UpdateChecker checker = new UpdateChecker(getPluginMeta().getVersion(), getSLF4JLogger());
+        getServer().getPluginManager().registerEvents(
+                new UpdateNotifyListener(scheduler, checker, lang), this);
+        checker.checkAsync(scheduler);
+    }
+
     private void registerCommands() {
         RacksCommand command = new RacksCommand(this);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, event ->
@@ -192,19 +211,6 @@ public final class RacksPlugin extends JavaPlugin {
         if (config.isRecipesEnabled()) {
             recipes.register();
         }
-    }
-
-    /**
-     * Flips the wall-support setting, writes it back to {@code config.yml} and restarts the sweep —
-     * the plugin's version of the data pack's {@code settings/ignore_wall_rack_support} functions,
-     * which kept the same flag in a scoreboard value. Both survive a restart; a file is simply the
-     * natural place for it here, and it means the setting can be edited without the server running.
-     */
-    public void setIgnoreWallRackSupport(boolean value) {
-        config.setIgnoreWallRackSupport(value);
-        getConfig().set("settings.ignore-wall-rack-support", value);
-        saveConfig();
-        wallSupport.refresh();
     }
 
     // ------------------------------------------------------------------------------------------------

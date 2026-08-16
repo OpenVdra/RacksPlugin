@@ -25,12 +25,10 @@ WorldGuard or GriefPrevention. Racks checks both before a rack is broken or an i
 ## Commands
 
 Each command has its own node. There is no shared parent node, so granting one does not grant the
-others. All three default to operators.
+other. Both default to operators.
 
 **`racks.command.give`** - `/racks give`: hand out a rack of any wood.
 
 **`racks.command.reload`** - `/racks reload`: re-read the config and language files.
 
-**`racks.command.setting`** - `/racks setting`: read or change the wall support rule.
-
-A player who holds none of the three does not see `/racks` in their command list at all.
+A player who holds neither does not see `/racks` in their command list at all.

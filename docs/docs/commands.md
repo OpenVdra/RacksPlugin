@@ -27,20 +27,6 @@ Use this after editing any file in `plugins/Racks/`.
 
 </CommandRow>
 
-<CommandRow commands="/racks setting ignore-wall-rack-support" permission="racks.command.setting">
-
-Shows whether wall racks currently break when their support block is removed.
-
-</CommandRow>
-
-<CommandRow commands="/racks setting ignore-wall-rack-support &lt;true|false&gt;" permission="racks.command.setting">
-
-Turns that behaviour off or on. The new value is written to `config.yml`, so it survives a restart.
-
-`true` means wall racks stay put with no support. `false` is the default and matches the data pack.
-
-</CommandRow>
-
 </BaseTable>
 
 ## Examples
@@ -57,8 +43,8 @@ Give another player sixteen cherry racks:
 /racks give cherry Steve 16
 ```
 
-Stop wall racks from falling when their wall is mined:
+Apply an edit made to `config.yml`:
 
 ```
-/racks setting ignore-wall-rack-support true
+/racks reload
 ```
