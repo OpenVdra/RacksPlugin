@@ -117,7 +117,6 @@ database:
 settings:
   ignore-wall-rack-support: false
   wall-support-check-interval: 10
-  lootable-delay: 0
 
 protection:
   worldguard: true
@@ -136,19 +135,13 @@ scoreboard toggle it survives a restart.
 data pack scheduled this every 10 ticks. The plugin runs one task per *chunk that actually holds a
 wall rack*, so a server with none schedules nothing.
 
-**`lootable-delay`** is how many ticks a rack must have stood before breaking it drops the rack item.
-`0` (the default) always drops. This is for land protection plugins that undo a placement a tick
-later: without it a player could place and break a rack in the same breath and walk away with two.
-Items already on a rack always drop, whatever this is set to.
-
 **`recipes-enabled`** turns the twelve crafting recipes off, leaving `/racks give` and your own loot
 tables.
 
-**`protection.worldguard`** and **`protection.griefprevention`** each ask their matching plugin's
-regions/claims before letting a player break a rack or swap its item, when that plugin is installed —
-see [Protection plugins](#protection-plugins) below. Turn either off without touching the other.
-Placing a rack needs no integration; it is a normal block placement, already covered by whatever
-these plugins already do for one.
+**`worldguard`** and **`griefprevention`**, under `protection`, each check their matching plugin
+before a player breaks a rack or swaps its item. See [Protection plugins](#protection-plugins) below.
+Either can be turned off without touching the other, and both are ignored when that plugin is not
+installed. Putting a rack down is a normal block placement, which both plugins already cover.
 
 ### Languages
 
@@ -169,19 +162,17 @@ how the data pack behaved.
 ## Protection plugins
 
 Breaking a rack, swapping its item or turning it is checked against **WorldGuard** regions and
-**GriefPrevention** claims, whichever of the two (or both) is installed — nothing to configure beyond
-having the plugin itself running. **Placing** a rack needs no integration: it is a normal
-`BlockPlaceEvent`, so both plugins already protect it on their own.
+**GriefPrevention** claims. Nothing needs configuring beyond having the protection plugin itself
+running. Putting a rack down is a normal `BlockPlaceEvent`, so both plugins already cover it.
 
 | Rack action | WorldGuard flag | GriefPrevention trust |
 |---|---|---|
-| Break | `block-break` | Build |
-| Swap an item, or turn the rack | `interact` | Inventory (`/containertrust`) |
+| Break | `block-break` | Build (`/trust`) |
+| Swap an item, or turn the rack | `interact` | Container (`/containertrust`) |
 
-Operators and `worldguard.region.bypass` skip WorldGuard's checks. GriefPrevention's own claim owner,
-trusted players, admin claims and a player's `/ignoreclaims` toggle are honoured automatically, with
-no separate permission to grant. `protection.worldguard: false` and `protection.griefprevention:
-false` in `config.yml` turn each off independently. See
+Operators and `worldguard.region.bypass` skip WorldGuard's checks. A GriefPrevention claim owner,
+anyone trusted, admin claims and a player's `/ignoreclaims` toggle are all respected already, with no
+extra permission to grant. See
 [Protection Plugins](https://openvdra.github.io/RacksPlugin/docs/protections) for the full breakdown.
 
 ## Migrating from the data pack
@@ -220,10 +211,10 @@ racks.
 Everything else is intentionally identical. This one is not:
 
 1. **Breaking the barrier breaks the rack.** A floor rack stands on a barrier, which only creative
-   mode can break. Nothing in the data pack watched that block — its only periodic check looks at
-   wall racks' supports — so breaking the barrier left the rack's entities and its database row
-   exactly where they were, and the rack went on working with nothing solid under it. Here that
-   break is treated as breaking the rack, which is what the person swinging meant.
+   mode can break. Nothing in the data pack watched that block, its only periodic check looks at
+   wall racks' supports, so breaking the barrier left the rack exactly where it was and it went on
+   working with nothing solid under it. Here that break is treated as breaking the rack, which is
+   what the person swinging meant.
 
 ## Building
 

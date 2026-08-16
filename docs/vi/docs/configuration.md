@@ -22,10 +22,11 @@ Phải trùng tên một thư mục trong `plugins/Racks/language/`. Plugin có 
 
 <ConfigProperty name="language-auto-detect" value="true" type="boolean">
 
-Hiển thị tin nhắn theo ngôn ngữ game của từng người chơi, nếu ngôn ngữ đó có thư mục.
+Hiển thị tin nhắn theo ngôn ngữ game của từng người chơi. Chỉ những ngôn ngữ có thư mục trong
+`language/` mới hiện được, số còn lại dùng tùy chọn `language` phía trên.
 
-Tắt đi thì mọi người dùng chung tùy chọn `language` phía trên, giống cách data pack gốc hoạt động.
-Tắt cũng làm mọi giá treo cùng loại gỗ xếp chồng được, vì khi đó chúng có tên giống hệt nhau.
+Tắt đi thì mọi người dùng chung một ngôn ngữ, giống cách data pack gốc hoạt động. Tắt cũng làm mọi
+giá treo cùng loại gỗ xếp chồng được, vì khi đó chúng có tên giống hệt nhau.
 
 </ConfigProperty>
 
@@ -46,8 +47,8 @@ trong thế giới ngừng hoạt động, và vật phẩm trên chúng cũng m
 
 Giá treo tường có trụ lại được khi mất khối đỡ hay không.
 
-`false` là mặc định và giống data pack: giá treo tự rơi cùng vật phẩm trên nó, như một bức tranh.
-`true` để nó lơ lửng, và ngừng luôn việc kiểm tra.
+`false` giống data pack: giá treo tự rơi cùng vật phẩm trên nó, như một bức tranh. `true` để nó lơ
+lửng, và ngừng luôn việc kiểm tra bên dưới.
 
 `/racks setting ignore-wall-rack-support <true|false>` đổi được ngay trong game và ghi lại vào đây.
 
@@ -56,19 +57,8 @@ Giá treo tường có trụ lại được khi mất khối đỡ hay không.
 
 Bao lâu giá treo tường kiểm tra khối phía sau một lần, tính bằng tick. 20 tick là một giây.
 
-Tăng lên thì máy chủ làm việc ít hơn và giá treo mất nhiều thời gian hơn mới rơi. Tùy chọn này không
-có tác dụng khi `ignore-wall-rack-support` đang bật.
-
-</ConfigProperty>
-<ConfigProperty name="lootable-delay" value="0" type="number">
-
-Giá treo phải đứng bao lâu, tính bằng tick, thì khi phá mới rơi ra vật phẩm giá treo. `0` là luôn
-rơi.
-
-Hãy tăng lên nếu plugin bảo vệ đất của bạn hủy việc đặt khối trễ một nhịp, vì điều đó cho phép người
-chơi đặt rồi phá để nhân đôi giá treo. `40` là hai giây và đã quá đủ.
-
-Vật phẩm đang nằm trên giá thì luôn rơi, bất kể đặt giá trị nào.
+Đặt cao hơn thì máy chủ làm việc ít hơn và giá treo mất nhiều thời gian hơn mới rơi. Tùy chọn này
+không có tác dụng khi `ignore-wall-rack-support` đang bật.
 
 </ConfigProperty>
 </ConfigGroup>
@@ -76,23 +66,20 @@ Vật phẩm đang nằm trên giá thì luôn rơi, bất kể đặt giá tr�
 <ConfigGroup name="protection">
 <ConfigProperty name="worldguard" value="true" type="boolean">
 
-Hỏi vùng WorldGuard trước khi cho người chơi phá giá treo hoặc đổi vật phẩm trên đó, khi WorldGuard
-đang cài. Không có tác dụng nếu chưa cài. Xem [Plugin bảo vệ đất](/vi/docs/protections) để biết mỗi
-hành động kiểm tra cờ nào.
+Kiểm tra vùng WorldGuard trước khi người chơi phá giá treo hoặc đổi vật phẩm trên đó. Phá cần cờ
+`block-break`, đổi và xoay cần cờ `interact`.
 
-Tắt đi thì chỉ bỏ qua riêng phần kiểm tra của WorldGuard, độc lập với `griefprevention` bên dưới.
-Không ảnh hưởng đến việc đặt giá treo — đó là đặt block bình thường, đã được WorldGuard tự bảo vệ sẵn.
+Bị bỏ qua khi chưa cài WorldGuard. Tắt nó đi không ảnh hưởng tới GriefPrevention bên dưới. Xem
+[Plugin bảo vệ đất](/vi/docs/protections).
 
 </ConfigProperty>
 <ConfigProperty name="griefprevention" value="true" type="boolean">
 
-Hỏi mảnh đất GriefPrevention trước khi cho người chơi phá giá treo hoặc đổi vật phẩm trên đó, khi
-GriefPrevention đang cài. Không có tác dụng nếu chưa cài. Xem
-[Plugin bảo vệ đất](/vi/docs/protections) để biết mỗi hành động cần mức tin cậy nào.
+Kiểm tra mảnh đất GriefPrevention trước khi người chơi phá giá treo hoặc đổi vật phẩm trên đó. Phá
+cần mức tin cậy Build, đổi và xoay cần mức Container.
 
-Tắt đi thì chỉ bỏ qua riêng phần kiểm tra của GriefPrevention, độc lập với `worldguard` phía trên.
-Không ảnh hưởng đến việc đặt giá treo — đó là đặt block bình thường, đã được GriefPrevention tự bảo
-vệ sẵn.
+Bị bỏ qua khi chưa cài GriefPrevention. Tắt nó đi không ảnh hưởng tới WorldGuard phía trên. Xem
+[Plugin bảo vệ đất](/vi/docs/protections).
 
 </ConfigProperty>
 </ConfigGroup>
@@ -109,8 +96,8 @@ Hãy gỡ data pack trước khi bật máy chủ, nếu không cả hai sẽ tr
 
 Đăng ký mười hai công thức chế tạo.
 
-Tắt đi thì người chơi không chế tạo được giá treo, và giá treo chỉ đến từ `/racks give` hoặc bảng
-loot do bạn tự thêm.
+Tắt đi thì không chế tạo được giá treo, và giá treo chỉ đến từ `/racks give` hoặc bảng loot do chủ
+máy chủ tự thêm.
 
 </ConfigProperty>
 
@@ -126,7 +113,6 @@ database:
 settings:
   ignore-wall-rack-support: false
   wall-support-check-interval: 10
-  lootable-delay: 0
 
 protection:
   worldguard: true

@@ -5,7 +5,7 @@ title: Chuyển từ data pack
 # Chuyển từ data pack
 
 Những giá treo đã có sẵn trong thế giới có thể được nhập tự động, kèm theo vật phẩm đang nằm trên
-chúng — bật `adopt-datapack-racks` trong `config.yml` (mặc định tắt).
+chúng. Hãy bật `adopt-datapack-racks` trong `config.yml`, vốn mặc định tắt.
 
 ::: warning Gỡ data pack trước
 Đừng chạy data pack và plugin cùng lúc. Cả hai sẽ tranh nhau điều khiển cùng những giá treo đó.
@@ -43,20 +43,17 @@ Người đã đặt giá treo ban đầu. Data pack có ghi lại nhưng chưa 
 </FeatureCard>
 </CardGrid>
 
-Giá treo được nhập luôn được xem là đủ cũ để rơi khi bị phá, bất kể `lootable-delay` đặt bao nhiêu.
-Data pack cũng đối xử với các giá treo đời cũ của nó như vậy.
-
 ## Vật phẩm giá treo trong túi đồ người chơi
 
 Không cần làm gì. Giá treo nằm trong rương, shulker và túi đồ vẫn dùng được ngay.
 
-Chúng được làm mới sang dạng của plugin trong lần đăng nhập kế tiếp của chủ sở hữu, và nhờ đó có tên
-theo ngôn ngữ của người chơi thay vì tiếng Anh cố định.
+Chúng nhận tên mới trong lần đăng nhập kế tiếp của chủ sở hữu, nhờ đó hiện theo ngôn ngữ của người
+chơi thay vì tiếng Anh cố định.
 
 ## Nếu một giá treo biến mất sau khi chuyển
 
-Hãy đi vào chunk chứa nó, đi ra rồi quay lại. Giá treo được dựng lại từ cơ sở dữ liệu mỗi khi chunk
-được tải mà phát hiện thiếu, nên một vòng đi về thường là đủ.
+Hãy đi vào chunk chứa nó, đi ra rồi quay lại. Giá treo bị thiếu khung sẽ được dựng lại mỗi khi chunk
+của nó được tải, nên một vòng đi về thường là đủ.
 
 ## Chuyển từ Racks V.2
 

@@ -191,7 +191,7 @@ public final class RackService {
      * nothing can interact with it while it is coming apart. Then the block goes, then whatever was
      * on the rack drops — <b>always</b>, creative or not, because those items belong to whoever put
      * them there. Only then does the rack itself decide whether to drop, and it declines for a
-     * creative breaker or when it is younger than {@code lootable-delay}. Entities are removed last.
+     * creative breaker. Entities are removed last.
      *
      * @param breaker the player responsible, or null when the rack broke on its own — a wall rack
      *                whose support was taken away
@@ -210,7 +210,7 @@ public final class RackService {
         dropIfPresent(rack.item(RackPart.LEFT), world, rack);
         dropIfPresent(rack.item(RackPart.RIGHT), world, rack);
 
-        if (shouldDropItself(rack, world, breaker)) {
+        if (shouldDropItself(breaker)) {
             Locale locale = breaker != null ? breaker.locale() : lang.fallbackLocale();
             drop(world, rack, items.create(rack.variant(), locale));
         }
@@ -222,21 +222,14 @@ public final class RackService {
     /**
      * Whether the rack drops as an item: {@code actions/break/should_loot_itself}.
      *
-     * <p>The age check exists for land-protection plugins. A protection plugin that undoes a
-     * placement a moment later would otherwise let a player place and break a rack in the same breath
-     * and walk away with two, so an operator can set {@code lootable-delay} to a handful of ticks and
-     * have a rack that never really existed leave nothing behind.
+     * <p>Only creative mode declines, exactly as the data pack did. There is deliberately no grace
+     * period for land-protection plugins: {@link com.racks.listener.RackPlaceListener} converts the
+     * placed head at {@code MONITOR} priority with {@code ignoreCancelled = true}, so a protection
+     * plugin that cancels the placement means no rack is ever created, and there is nothing to break
+     * for a second copy.
      */
-    private boolean shouldDropItself(Rack rack, World world, @Nullable Player breaker) {
-        if (breaker != null && breaker.getGameMode() == GameMode.CREATIVE) {
-            return false;
-        }
-        long delay = config.get().getLootableDelay();
-        if (delay <= 0) {
-            return true;
-        }
-        long age = world.getGameTime() - rack.createdAtGameTime();
-        return age >= delay;
+    private boolean shouldDropItself(@Nullable Player breaker) {
+        return breaker == null || breaker.getGameMode() != GameMode.CREATIVE;
     }
 
     private void dropIfPresent(@Nullable ItemStack item, World world, Rack rack) {

@@ -5,40 +5,36 @@
 # such as a rack lying on the ground. Must match a folder name under language/.
 language: en_US
 
-# Show each player messages in their own game language, when a folder for it exists under
-# language/. Off puts everyone on the language above.
+# Show each player messages in their own game language. Only languages with a folder under
+# language/ can be shown; everyone else falls back to the language above.
 language-auto-detect: true
 
 database:
   # NEED RESTART:
   # SQLite file inside plugins/Racks/. Holds every placed rack and what is on it.
+  # Back it up with the world. Without it, placed racks and their items are gone.
   file: racks.db
 
 settings:
-  # true: wall racks stay up even after the block they hang on is gone.
-  # false: they drop themselves, the way a painting does.
+  # true: wall racks stay up after the block behind them is gone, and the check below stops running.
+  # false: they drop themselves and their items, the way a painting does.
   ignore-wall-rack-support: false
 
   # How often wall racks check the block behind them, in ticks. 20 ticks is one second.
   # Higher means less work for the server and a longer wait before a rack falls.
   wall-support-check-interval: 10
 
-  # How long a rack must stand, in ticks, before breaking it drops the rack itself. 0 always drops.
-  # Raise it if a land protection plugin cancels placements a moment late, which otherwise lets a
-  # player place and break a rack for a free copy. Items on the rack always drop, at any value.
-  lootable-delay: 0
-
-# Ask the matching plugin's regions/claims before letting a player break a rack or swap its item, if
-# that plugin is installed. Each is independent: turn either off without touching the other, or leave
-# both on (the default) and let Racks use whichever is actually present. Placing a rack is unaffected
-# either way — it is a normal block placement, already covered by whatever these plugins already do
-# for one.
+# Check the matching plugin before letting a player break a rack or swap its item.
+# Each is ignored when that plugin is not installed. Putting a rack down is a normal block
+# placement, so both plugins already cover it whatever these are set to.
 protection:
+  # Regions: needs the block-break flag to break, the interact flag to swap or turn.
   worldguard: true
+  # Claims: needs Build trust to break, Container trust to swap or turn.
   griefprevention: true
 
-# Import racks left standing by the Racks data pack, as their chunks load.
-# Remove the data pack first, or the two fight over the same racks.
+# Import racks the Racks data pack left standing, as their chunks load. Remove the data pack
+# before starting the server, or the two fight over the same racks.
 adopt-datapack-racks: false
 
 # Register the twelve crafting recipes. Off means racks come only from /racks give or your own

@@ -22,10 +22,11 @@ Must match a folder name under `plugins/Racks/language/`. `en_US` and `vi_VN` sh
 
 <ConfigProperty name="language-auto-detect" value="true" type="boolean">
 
-Show each player messages in their own game language when a folder for it exists.
+Show each player messages in their own game language. Only languages with a folder under
+`language/` can be shown, everyone else falls back to the `language` setting above.
 
-Off puts everyone on the `language` setting above, which is how the original data pack behaved.
-It also makes every rack of the same wood stack, since they are then all named identically.
+Off puts everyone on one language, which is how the data pack behaved. It also makes every rack of
+the same wood stack, since they are then all named identically.
 
 </ConfigProperty>
 
@@ -34,7 +35,7 @@ It also makes every rack of the same wood stack, since they are then all named i
 
 The database file inside `plugins/Racks/`. It holds every placed rack and whatever is on it.
 
-**Needs a full restart.** Back this file up along with your world. Losing it means every rack in the
+**Needs a full restart.** Back this file up along with the world. Losing it means every rack in the
 world stops working, and the items on them are gone with it.
 
 </ConfigProperty>
@@ -45,8 +46,8 @@ world stops working, and the items on them are gone with it.
 
 Whether a wall rack survives losing the block it hangs on.
 
-`false` is the default and matches the data pack: the rack drops itself and its items, the way a
-painting does. `true` leaves it floating, and stops the check running at all.
+`false` matches the data pack: the rack drops itself and its items, the way a painting does. `true`
+leaves it floating, and stops the check below running at all.
 
 `/racks setting ignore-wall-rack-support <true|false>` changes this in game and writes it back here.
 
@@ -55,18 +56,8 @@ painting does. `true` leaves it floating, and stops the check running at all.
 
 How often wall racks look at the block behind them, in ticks. 20 ticks is one second.
 
-Raising it means less work for the server and a longer pause before a rack falls. It has no effect
-when `ignore-wall-rack-support` is on.
-
-</ConfigProperty>
-<ConfigProperty name="lootable-delay" value="0" type="number">
-
-How long a rack must stand, in ticks, before breaking it drops the rack item. `0` always drops it.
-
-Raise it if a land protection plugin cancels placements a moment after they happen, which otherwise
-lets a player place a rack and break it for a free copy. `40` is two seconds and is plenty.
-
-Items sitting on the rack always drop, whatever this is set to.
+Higher means less work for the server and a longer wait before a rack falls. It has no effect when
+`ignore-wall-rack-support` is on.
 
 </ConfigProperty>
 </ConfigGroup>
@@ -74,23 +65,20 @@ Items sitting on the rack always drop, whatever this is set to.
 <ConfigGroup name="protection">
 <ConfigProperty name="worldguard" value="true" type="boolean">
 
-Ask WorldGuard regions before letting a player break a rack or swap its item, when WorldGuard is
-installed. Has no effect if it is not. See [Protection Plugins](/docs/protections) for which flag
-each action checks.
+Check WorldGuard regions before a player breaks a rack or swaps its item. Breaking needs the
+`block-break` flag, swapping and turning need `interact`.
 
-Off skips WorldGuard's checks specifically, independently of `griefprevention` below. Placing a rack
-is unaffected either way — it is a normal block placement, already covered by WorldGuard on its own.
+Ignored when WorldGuard is not installed. Turning it off leaves GriefPrevention below untouched.
+See [Protection Plugins](/docs/protections).
 
 </ConfigProperty>
 <ConfigProperty name="griefprevention" value="true" type="boolean">
 
-Ask GriefPrevention claims before letting a player break a rack or swap its item, when
-GriefPrevention is installed. Has no effect if it is not. See
-[Protection Plugins](/docs/protections) for which trust level each action checks.
+Check GriefPrevention claims before a player breaks a rack or swaps its item. Breaking needs Build
+trust, swapping and turning need Container trust.
 
-Off skips GriefPrevention's checks specifically, independently of `worldguard` above. Placing a rack
-is unaffected either way — it is a normal block placement, already covered by GriefPrevention on its
-own.
+Ignored when GriefPrevention is not installed. Turning it off leaves WorldGuard above untouched.
+See [Protection Plugins](/docs/protections).
 
 </ConfigProperty>
 </ConfigGroup>
@@ -107,8 +95,8 @@ Remove the data pack before turning the server on, or the two fight over the sam
 
 Register the twelve crafting recipes.
 
-Off means players cannot craft racks at all, and they come only from `/racks give` or loot tables you
-add yourself.
+Off means racks cannot be crafted at all, and come only from `/racks give` or loot tables added by
+the server owner.
 
 </ConfigProperty>
 
@@ -124,7 +112,6 @@ database:
 settings:
   ignore-wall-rack-support: false
   wall-support-check-interval: 10
-  lootable-delay: 0
 
 protection:
   worldguard: true

@@ -18,8 +18,8 @@ lại túi đồ, và bấm vào giá treo có sẵn cũng không có tác dụn
 
 ::: tip Bảo vệ công trình
 `racks.use` chỉ có bật hoặc tắt. Để chặn người chơi phá giá treo của nhau ở một số khu vực, hãy dùng
-plugin bảo vệ đất. Giá treo đứng trên một khối rào chắn, và các plugin đó bảo vệ nó như mọi khối
-khác.
+WorldGuard hoặc GriefPrevention. Racks kiểm tra cả hai trước khi một giá treo bị phá hoặc bị đổi vật
+phẩm, xem [Plugin bảo vệ đất](/vi/docs/protections).
 :::
 
 ## Lệnh

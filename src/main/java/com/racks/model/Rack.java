@@ -79,7 +79,11 @@ public final class Rack {
         return owner;
     }
 
-    /** World game time the rack was placed at, for the {@code lootable-delay} grace period. */
+    /**
+     * World game time the rack was placed at. Stored the way {@link #owner()} is, as a record of the
+     * placement rather than something the plugin acts on; a rack adopted from the data pack reports
+     * {@code 0}, since the data pack never wrote one.
+     */
     public long createdAtGameTime() {
         return createdAtGameTime;
     }

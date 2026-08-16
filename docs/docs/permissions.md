@@ -17,9 +17,9 @@ A player without it can still craft the item, but placing it puts the rack strai
 inventory and clicking an existing rack does nothing.
 
 ::: tip Protecting builds
-`racks.use` is all or nothing. To stop players breaking each other's racks in specific areas, use a
-land protection plugin. Racks stand on a barrier block, which those plugins guard like any other
-block.
+`racks.use` is all or nothing. To stop players breaking each other's racks in specific areas, use
+WorldGuard or GriefPrevention. Racks checks both before a rack is broken or an item swapped, see
+[Protection Plugins](/docs/protections).
 :::
 
 ## Commands

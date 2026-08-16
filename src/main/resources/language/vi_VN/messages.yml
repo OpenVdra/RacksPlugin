@@ -19,7 +19,6 @@ setting:
   already: '<red>Tùy chọn "<yellow>{setting}</yellow>" vốn đã là <yellow>{value}</yellow>'
   name:
     ignore-wall-rack-support: 'Bỏ qua điểm tựa của giá treo tường'
-    lootable-delay: 'Độ trễ trước khi rơi vật phẩm'
 
 # Tên và mô tả của vật phẩm giá treo. Bản data pack gốc dùng tên màu vàng kèm một dòng mô tả xám
 # đậm giống hệt; hãy giữ {variant} ở vị trí tên loại gỗ.

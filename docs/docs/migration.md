@@ -4,8 +4,8 @@ title: Coming from the Data Pack
 
 # Coming from the Data Pack
 
-Racks already standing in your world can be imported automatically, with the items still on them —
-turn on `adopt-datapack-racks` in `config.yml` (off by default).
+Racks already standing in your world can be imported automatically, with the items still on them.
+Turn on `adopt-datapack-racks` in `config.yml`, which is off by default.
 
 ::: warning Remove the data pack first
 Do not run the data pack and the plugin at the same time. Both will try to control the same racks.
@@ -44,20 +44,17 @@ plugin.
 </FeatureCard>
 </CardGrid>
 
-Imported racks count as old enough to drop when broken, whatever `lootable-delay` is set to. The
-data pack treated its own older racks the same way.
-
 ## Rack items in players' inventories
 
 Nothing to do. Racks in chests, shulkers and inventories keep working straight away.
 
-They are quietly refreshed into the plugin's own form the next time their owner logs in, which is
-what gives them a name in that player's language instead of fixed English.
+They take their new name the next time their owner logs in, which is what shows them in that
+player's language instead of fixed English.
 
 ## If a rack is missing after the move
 
-Walk into its chunk and back out, then in again. Racks are rebuilt from the database whenever their
-chunk loads and something is missing, so the round trip usually fixes it.
+Walk into its chunk and back out, then in again. A rack whose frame is missing is rebuilt whenever
+its chunk loads, so the round trip usually fixes it.
 
 ## Coming from Racks V.2
 

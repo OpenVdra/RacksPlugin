@@ -24,7 +24,6 @@ setting:
   already: '<red>Setting "<yellow>{setting}</yellow>" is already set to <yellow>{value}</yellow>'
   name:
     ignore-wall-rack-support: 'Ignore Wall Rack Support'
-    lootable-delay: 'Lootable Delay'
 
 # Item name and lore of the rack item itself. The data pack showed a yellow name with a matching
 # dark grey lore line; keep {variant} where the wood name belongs.
