@@ -1,6 +1,6 @@
 ---
 name: write-docs
-description: Write Racks end-user content - CHANGELOG entries, VitePress documentation pages, the Modrinth description, and the comments in config.yml. Use when adding a changelog entry for a release, writing/editing pages on the docs site (docs/), editing docs/public/MODRINTH.md, or adding/rewording a setting's comment in src/main/resources/config.yml. Enforces the plain, non-technical writing style and the site's component and Lucide-icon conventions.
+description: Write Racks end-user content - CHANGELOG entries, VitePress documentation pages, the README, and the comments in config.yml. Use when adding a changelog entry for a release, writing/editing pages on the docs site (docs/), editing README.md, or adding/rewording a setting's comment in src/main/resources/config.yml. Enforces the plain, non-technical writing style and the site's component and Lucide-icon conventions.
 ---
 
 # Writing Racks docs and changelog
@@ -109,16 +109,16 @@ The comment above a setting is the only documentation most admins ever read. It 
 - To use a new icon: add its import and an entry to the `ICONS` map in `LucideIcon.vue`, then reference it by that name. Use PascalCase Lucide names (for example `ShieldCheck`, `ArrowRightLeft`).
 - Prefer a Lucide icon over an emoji or an image whenever you want a small inline symbol.
 
-## Modrinth description (`docs/public/MODRINTH.md`)
+## README (`README.md`)
 
-The store page. It sells the plugin to someone who has never heard of it, in one screen.
+The store page: it doubles as the Modrinth project description, so it sells the plugin to someone
+who has never heard of it, in one screen, as well as orienting a developer cloning the repo.
 
-- Lead with one plain sentence saying what the plugin adds, the way the README does: "Adds wooden display racks for tools and weapons. No resource pack required." Not a rhetorical problem statement, not a marketing tagline.
-- A `## Highlights` list of short bullets, each opening with a bolded phrase. Link the bullet's phrase to the matching docs page when there is one.
-- Include the screenshot section, the command tables, and a `## Get started` block naming the Minecraft version, server software, and Java version.
-- Raw HTML is allowed here because Modrinth renders it, unlike the rest of the docs. Badges and centered images are fine.
-- Keep it in sync with the feature set. A highlight that no longer exists is worse than no highlight.
-- Highlights are for what makes someone install the plugin: what it looks like, what it does in game, and compatibility that changes whether it works on their server (WorldGuard/GriefPrevention, data pack migration). Leave out engineering claims the reader can't act on either way, like Folia thread-safety, storage internals, or that translations live in a folder, those belong on the docs site, not the store page.
+- Lead with one plain sentence saying what the plugin adds: "Adds wooden display racks for tools and weapons. No resource pack required." Not a rhetorical problem statement, not a marketing tagline.
+- The `## Features` table is the highlights list. Each row opens with a bolded phrase; link it to the matching docs page when there is one.
+- Keep it in sync with the feature set. A row that no longer exists is worse than no row.
+- Features are for what makes someone install the plugin: what it looks like, what it does in game, and compatibility that changes whether it works on their server (WorldGuard/GriefPrevention, data pack migration). Leave out engineering claims the reader can't act on either way, like Folia thread-safety or storage internals, those belong on the docs site, not the README.
+- Raw HTML is allowed here (badges, centered images, tables) since both GitHub and Modrinth render it.
 
 ## Before finishing
 

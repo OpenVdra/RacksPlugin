@@ -26,10 +26,8 @@ left-click to take the rack back down.
 |---|---|
 | **12 wood variants** | Oak, spruce, birch, jungle, acacia, dark oak, mangrove, cherry, pale oak, bamboo, crimson, warped |
 | **Floor and wall racks** | Two slots on the floor, one on a wall, each with its own frame and click areas |
-| **Poses** | Six arrangements on the floor, four on a wall, cycled with sneak + right-click |
-| **Persistent storage** | Placed racks and their contents live in `plugins/Racks/racks.db`, and survive a restart |
-| **Per-player language** | English and Vietnamese included; each player reads their own client language |
-| **Folia support** | A rack is only ever touched from the thread that owns its block |
+| **Per-player language** | Each player reads their own client language; fully translatable, see [Language](#language) |
+| **Custom item NBT data** | Enchantments, custom names, lore and other NBT data survive being placed on a rack |
 | **Data pack migration** | Racks left standing by the original data pack can be imported on request |
 | **WorldGuard / GriefPrevention** | Breaking a rack or swapping its item is checked against regions and claims, if either plugin is installed |
 
@@ -78,6 +76,13 @@ from ItemsAdder, Oraxen, Nexo or similar plugins goes on a rack the same as a va
 
 `racks.use` defaults to true because the data pack gated nothing. Out of the box the plugin behaves
 identically. Negate it for a group to restrict racks.
+
+## Language
+
+Every message and item name ships in English and Vietnamese, and each player automatically sees
+whichever one matches their own client language. Operators can add more: drop a
+`language/<locale>/messages.yml` file next to the bundled ones and translate it, then
+`/racks reload` picks it up.
 
 ## Protection plugins
 
