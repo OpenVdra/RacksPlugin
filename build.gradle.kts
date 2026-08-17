@@ -33,7 +33,7 @@ dependencies {
 
     // Paper bundles sqlite-jdbc on the server classpath; compileOnly is sufficient.
     compileOnly("org.xerial:sqlite-jdbc:3.53.2.1")
-    compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.15") // pulls worldedit-bukkit transitively
+    compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.18") // pulls worldedit-bukkit transitively
     compileOnly("com.github.GriefPrevention:GriefPrevention:18.0.0")
 
     compileOnly("org.projectlombok:lombok:1.18.46")
