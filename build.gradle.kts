@@ -43,7 +43,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testRuntimeOnly("org.xerial:sqlite-jdbc:3.53.4.0")
-    testImplementation("org.slf4j:slf4j-simple:2.0.19")
+    testImplementation("org.slf4j:slf4j-simple:2.0.20")
     testImplementation("com.zaxxer:HikariCP:7.1.0")
     testImplementation("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 }
